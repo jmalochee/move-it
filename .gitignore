@@ -25,3 +25,4 @@
 /app/assets/javascripts/bundle.js
 .DS_Store
 /notes
+.env
