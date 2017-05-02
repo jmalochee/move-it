@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'static_pages#index'
 
-  get '/signup' => 'users#new'
-  post '/users' => 'users#create'
+  get '/register' => 'static_pages#index'
+  get '/login' => 'static_pages#index'
+
+  resources :users, only: [ :create ]
 end
