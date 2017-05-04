@@ -1,0 +1,50 @@
+$primary-color: #BCE3C5;
+$secondary-color: #82B3AE;
+$text-color: #230F2B;
+$background-color: #EBEBBC;
+$accent-color: #F21D41;
+$button-background: #BCE3C5;
+
+body {
+  color: #230F2B;
+  background: #EBEBBC;
+  font-family: 'Marmelad', sans-serif;
+}
+
+a {
+  color: #BCE3C5;
+}
+
+.nav {
+   background-color: #82B3AE;
+   padding-left: 20px;
+   padding-right: 20px;
+   color: $primary-color;
+   font-size: 1.5em
+ }
+
+.nav a {
+  color: $text-color;
+}
+
+.auth a:hover {
+  color: $background-color;
+}
+
+h1 {
+  font-family: 'Fredericka the Great', serif;
+  font-size: 3em;
+}
+
+.registration button {
+  margin: 50px;
+}
+
+.registration {
+  padding: 50px;
+  font-size: 1.2em;
+}
+
+.blurb {
+  padding: 50px;
+}

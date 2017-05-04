@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 class Layout extends Component {
   constructor(props) {
@@ -9,17 +10,17 @@ class Layout extends Component {
   render() {
     return(
       <div>
-        <div className="top-bar">
-          <div className="moveit">
-            <h1>move it!</h1>
+        <div className="row nav align-middle">
+          <div className="column">
+            <Link to="/"><h1>move it!</h1></Link>
           </div>
-          <div className="authentication text-right">
-            <Link to="/register">Register</Link>
-            <span> | </span>
-            <Link to="/login">Log In</Link>
+          <div className="auth column text-right">
+              <Link to="/register" >Register</Link>
+              <span> | </span>
+              <Link to="/login" >Log In</Link>
           </div>
         </div>
-        { props.children }
+        { this.props.children }
       </div>
     )
   }
