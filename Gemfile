@@ -8,6 +8,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'foundation-rails'
 gem 'bcrypt'
+gem 'active_model_serializers'
 group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'

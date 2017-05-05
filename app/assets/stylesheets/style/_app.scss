@@ -36,6 +36,34 @@ h1 {
   font-size: 3em;
 }
 
+h2 {
+  font-family: 'Fredericka the Great', serif;
+}
+
+h3 {
+  font-family: 'Fredericka the Great', serif;
+}
+
+h4 {
+  font-family: 'Fredericka the Great', serif;
+}
+
+h5 {
+  font-family: 'Fredericka the Great', serif;
+}
+
+input .button {
+  color: $secondary-color;
+}
+
+.alert {
+  font-size: .8em;
+}
+
+label {
+  font-size: 1.1em;
+}
+
 .registration button {
   margin: 50px;
 }
@@ -47,4 +75,21 @@ h1 {
 
 .blurb {
   padding: 50px;
+}
+
+.splash {
+  margin-top: 100px;
+  padding: 50px;
+  font-size: 16pt;
+}
+
+#splash-name {
+  margin: 25px;
+  font-size: 75pt;
+}
+
+.wizard {
+  font-size: 25pt;
+  font-family: 'Fredericka the Great', serif;
+
 }
