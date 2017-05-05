@@ -138,9 +138,9 @@ class NewUser extends Component {
         let parsed = response.json()
         return parsed
       }).then(parsed => {
-        debugger;
         if ( parsed.message ) {
         this.setState({ message: parsed.message })
+        window.location=`/home`
       } else if ( parsed.errors ) {
         this.setState({ errors: parsed.errors })
       }

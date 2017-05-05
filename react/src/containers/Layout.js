@@ -15,9 +15,9 @@ class Layout extends Component {
             <Link to="/"><h1>move it!</h1></Link>
           </div>
           <div className="auth column text-right">
-              <Link to="/register" >Register</Link>
+            <Link to="/register" >Register</Link>
               <span> | </span>
-              <Link to="/login" >Log In</Link>
+            <Link to="/login" >Log In</Link>
           </div>
         </div>
         { this.props.children }
