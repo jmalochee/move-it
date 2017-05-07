@@ -4,8 +4,19 @@ import { Link } from 'react-router';
 class Layout extends Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      current_user: {}
+    }
   }
+
+  componentDidMount(){
+    fetch('/api/v1/users')
+    .then(response => response.json())
+    .then(responseData => {
+      this.setState({ current_user: responseData.current_user })
+    })
+  }
+
 
   render() {
     return(

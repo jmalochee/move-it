@@ -10,10 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170501203713) do
+ActiveRecord::Schema.define(version: 20170501224737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "moves", force: :cascade do |t|
+    t.text     "comments"
+    t.string   "origin_rooms"
+    t.string   "dest_rooms"
+    t.string   "move_date",         null: false
+    t.string   "orig_address",      null: false
+    t.string   "orig_unit"
+    t.string   "orig_city",         null: false
+    t.string   "orig_state",        null: false
+    t.string   "orig_zip",          null: false
+    t.string   "orig_floor",        null: false
+    t.string   "orig_truck_access"
+    t.string   "orig_distance"
+    t.string   "dest_address",      null: false
+    t.string   "dest_unit"
+    t.string   "dest_city",         null: false
+    t.string   "dest_state",        null: false
+    t.string   "dest_zip",          null: false
+    t.string   "dest_floor",        null: false
+    t.string   "dest_truck_access"
+    t.string   "dest_distance"
+    t.integer  "user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["user_id"], name: "index_moves_on_user_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name",      null: false

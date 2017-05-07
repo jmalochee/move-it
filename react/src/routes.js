@@ -10,7 +10,7 @@ let routes = (
     <Route path="/" component={Layout}>
       <Route path="/register" component={Register}/>
       <Route path="/users/new" component={NewUser}/>
-      <Route path="/home" component={UserShow}/>
+      <Route path="/users/:id" component={UserShow}/>
       <Route path="/splash" component={Splash}/>
     </Route>
 );

@@ -2,28 +2,32 @@ import React, { Component } from 'react';
 import TextField from '../components/TextField'
 import PasswordField from '../components/PasswordField'
 
-class NewUser extends Component {
+class NewMove extends Component {
   constructor(props) {
     super(props);
     this.state = {
       errors: {},
       message: {},
-      email: "",
-      first_name: "",
-      last_name: "",
-      password: "",
-      password_confirmation: ""
+      origin_rooms: "",
+      dest_rooms: "",
+      move_date: "",
+      orig_address: "",
+      orig_unit: "",
+      orig_city: "",
+      orig_state: "",
+      orig_zip: "",
+      orig_floor: "",
+      orig_truck_access: "",
+      orig_distance: "",
+      dest_address: "",
+      dest_unit: "",
+      dest_city: "",
+      dest_state: "",
+      dest_zip: "",
+      dest_floor: "",
+      dest_truck_access: "",
+      dest_distance: ""
     }
-    this.handleFirstChange = this.handleFirstChange.bind(this);
-    this.handleLastChange = this.handleLastChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleConfirmationChange = this.handleConfirmationChange.bind(this);
-    this.validateFirstChange = this.validateFirstChange.bind(this);
-    this.validateLastChange = this.validateLastChange.bind(this);
-    this.validateEmailChange = this.validateEmailChange.bind(this);
-    this.validatePassword = this.validatePassword.bind(this);
-    this.validateConfirmation = this.validateConfirmation.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
@@ -133,7 +137,7 @@ class NewUser extends Component {
         password: this.state.password,
         password_confirmation: this.state.password_confirmation
       }
-      fetch('/api/v1/users', {
+      fetch('/api/v1/moves', {
         credentials: "same-origin",
         method: 'POST',
         body: JSON.stringify(requestBody)
@@ -144,7 +148,7 @@ class NewUser extends Component {
       }).then(parsed => {
         if ( parsed.message ) {
         this.setState({ message: parsed.message })
-        window.location=`/users/1`
+        window.location=`/moves/1`
       } else if ( parsed.errors ) {
         this.setState({ errors: parsed.errors })
       }
@@ -171,43 +175,105 @@ class NewUser extends Component {
         <form className='callout small-12 medium-10 large-6 columns' onSubmit={this.handleFormSubmit}>
           <h3> lets get started! </h3>
           {errorDiv}
+          move_date: "",
+          origin_rooms: "",
+          orig_address: "",
+          orig_unit: "",
+          orig_city: "",
+          orig_state: "",
+          orig_zip: "",
+          orig_floor: "",
+          orig_truck_access: "",
+          orig_distance: "",
+          dest_rooms: "",
+          dest_address: "",
+          dest_unit: "",
+          dest_city: "",
+          dest_state: "",
+          dest_zip: "",
+          dest_floor: "",
+          dest_truck_access: "",
+          dest_distance: ""
+          <div className="move-origin">
+          lets start by getting the basics out of the way:
           <TextField
-            content={this.state.first_name}
-            label='first name'
-            name='first_name'
-            handlerFunction={this.handleFirstChange}
-            placeholder='first'
+            content={this.state.move_date}
+            label='when are you moving?'
+            name='move_date'
+            handlerFunction={this.handleMoveDate}
+            placeholder='mm/dd/yyyy'
+          />
+          where are you moving from?
+          <TextField
+            content={this.state.orig_address}
+            label='street address'
+            name='orig_address'
+            handlerFunction={this.handleOrigAddress}
+            placeholder='123 easy street'
           />
           <TextField
-            content={this.state.last_name}
-            label='last name'
-            name='last_name'
-            handlerFunction={this.handleLastChange}
-            placeholder='last'
+            content={this.state.orig_unit}
+            label='unit, apartnemt, or suite number'
+            name='orig_unit'
+            handlerFunction={this.handleOrigUnit}
+            placeholder='1'
           />
           <TextField
-            content={this.state.email}
-            label='email'
-            name='email'
-            handlerFunction={this.handleEmailChange}
-            placeholder='em@il.com'
+            content={this.state.orig_city}
+            label='city'
+            name='orig_city'
+            handlerFunction={this.handleOrigCity}
+            placeholder='city'
           />
-        <PasswordField
-            content={this.state.password}
-            label='password'
-            name='password'
-            handlerFunction={this.handlePasswordChange}
-            placeholder='password'
+          <TextField
+            content={this.state.orig_state}
+            label='state'
+            name='orig_state'
+            handlerFunction={this.handleOrigState}
+            placeholder='state'
           />
-        <p className="help-text" id="passwordHelpText">
-          your password must have at least 8 characters, a number, and a letter.
-        </p>
-        <PasswordField
-            content={this.state.password_confirmation}
-            label='password confirmation'
-            name='password_confirmation'
-            handlerFunction={this.handleConfirmationChange}
-            placeholder='password'
+          <TextField
+            content={this.state.orig_zip}
+            label='zip code'
+            name='orig_zip'
+            handlerFunction={this.handleOrigZip}
+            placeholder='zip'
+          />
+          <TextField
+            content={this.state.orig_floor}
+            label='what floor is the entrance to your home on?'
+            name='orig_floor'
+            handlerFunction={this.handleOrigFloor}
+            placeholder='floor'
+          />
+        <Select
+            content={this.state.orig_city}
+            label='where can a mover plan on parking the truck?'
+            name='orig_truck_access'
+            handlerFunction={this.handleOrigTruck}
+            placeholder=''
+          />
+          
+          <TextField
+            content={this.state.orig_city}
+            label='city'
+            name='orig_city'
+            handlerFunction={this.handleOrigCity}
+            placeholder='city'
+          />
+          <TextField
+            content={this.state.orig_city}
+            label='city'
+            name='orig_city'
+            handlerFunction={this.handleOrigCity}
+            placeholder='city'
+          />
+          <TextField
+            content={this.state.orig_city}
+            label='city'
+            name='orig_city'
+            handlerFunction={this.handleOrigCity}
+            placeholder='city'
           />
           <input type='submit' className='button'/>
         </form>
@@ -216,4 +282,4 @@ class NewUser extends Component {
   }
 }
 
-export default NewUser;
+export default NewMove;

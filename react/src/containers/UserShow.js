@@ -9,10 +9,14 @@ class UserShow extends Component {
   }
 
   componentDidMount(){
-    fetch('/api/v1/home')
+    fetch('/api/v1/home', {
+      credentials: "include",
+      method: 'GET'
+    })
     .then(response => response.json())
     .then(responseData => {
       this.setState({ current_user: responseData.current_user })
+      console.log(responseData)
     })
   }
 
@@ -21,7 +25,9 @@ class UserShow extends Component {
       <div className="userShow">
         <div className="small-12 medium-3 large-2 columns">
           <div className="row">
-            this is where the user panel goes
+            <div className="full_name">
+              full name here
+            </div>
           </div>
         </div>
         <div className="small-12 medium-6 large-8 columns">
@@ -31,11 +37,14 @@ class UserShow extends Component {
         </div>
         <div className="small-12 medium-3 large-2 columns">
           <div className="row">
-            this is where move inventory goes!
+            <div className="inventory">
+              <h2>inventory</h2>
+            </div>
           </div>
         </div>
       </div>
     )
   }
 }
+
 export default UserShow;
