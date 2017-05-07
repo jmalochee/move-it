@@ -1,18 +1,17 @@
 import React from 'react';
 
-const TextArea = props => {
+const NumberField = props => {
   return (
     <label>{props.label}
-      <textarea
+      <input
         name={props.name}
         onChange={props.handlerFunction}
+        type='number'
+        value={props.content}
         placeholder={props.placeholder}
-        form=""
-      >
-        {props.content}
-      <textarea>
+      />
     </label>
   );
 }
 
-export default TextArea;
+export default NumberField;

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import TextField from '../components/TextField'
-import PasswordField from '../components/PasswordField'
+import TextAreaField from '../components/TextAreaField'
+import NumberField from '../components/NumberField'
+import SelectField from '../components/SelectField'
+import DateField from '../components/DateField'
 
 class NewMove extends Component {
   constructor(props) {
@@ -8,50 +11,166 @@ class NewMove extends Component {
     this.state = {
       errors: {},
       message: {},
-      origin_rooms: "",
-      dest_rooms: "",
       move_date: "",
+      orig_rooms: "",
       orig_address: "",
       orig_unit: "",
       orig_city: "",
       orig_state: "",
       orig_zip: "",
       orig_floor: "",
+      orig_access: "",
       orig_truck_access: "",
       orig_distance: "",
+      dest_rooms: "",
       dest_address: "",
       dest_unit: "",
       dest_city: "",
       dest_state: "",
       dest_zip: "",
       dest_floor: "",
+      dest_access: "",
       dest_truck_access: "",
-      dest_distance: ""
+      dest_distance: "",
+      access_options: [{
+        "1": "partial staircase",
+        "2": "multiple staircases",
+        "3": "elevator",
+        "4": "i can literally roll a ball from the street into the entrance"
+      }],
+      truck_access_options: [{
+        "1": "Loading Dock",
+        "2": "Street",
+        "3": "Driveway"
+      }]
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleMoveDate = this.handleMoveDate.bind(this);
+    this.handleOrigRooms = this.handleOrigRooms.bind(this);
+    this.handleOrigAddress = this.handleOrigAddress.bind(this);
+    this.handleOrigUnit = this.handleOrigUnit.bind(this);
+    this.handleOrigCity = this.handleOrigCity.bind(this);
+    this.handleOrigState = this.handleOrigState.bind(this);
+    this.handleOrigZip = this.handleOrigZip.bind(this);
+    this.handleOrigFloor = this.handleOrigFloor.bind(this);
+    this.handleOrigTruck = this.handleOrigTruck.bind(this);
+    this.handleOrigAccess = this.handleOrigAccess.bind(this);
+    this.handleOrigDistance = this.handleOrigDistance.bind(this);
+    this.handleDestRooms = this.handleDestRooms.bind(this);
+    this.handleDestAddress = this.handleDestAddress.bind(this);
+    this.handleDestUnit = this.handleDestUnit.bind(this);
+    this.handleDestCity = this.handleDestCity.bind(this);
+    this.handleDestState = this.handleDestState.bind(this);
+    this.handleDestZip = this.handleDestZip.bind(this);
+    this.handleDestFloor = this.handleDestFloor.bind(this);
+    this.handleDestTruck = this.handleDestTruck.bind(this);
+    this.handleDestAccess = this.handleDestAccess.bind(this);
+    this.handleDestDistance = this.handleDestDistance.bind(this);
   }
 
-  handleFirstChange(event) {
-    this.validateFirstChange(event.target.value)
-    this.setState({ first_name: event.target.value })
+  handleMoveDate(event) {
+    this.validateOrigRooms(event.target.value)
+    this.setState({ dest_rooms: event.target.value })
   }
 
-  handleLastChange(event) {
-    this.validateLastChange(event.target.value)
-    this.setState({ last_name: event.target.value })
+  handleOrigRooms(event) {
+    this.validateOrigRooms(event.target.value)
+    this.setState({ dest_rooms: event.target.value })
   }
 
-  handleEmailChange(event) {
-    this.validateEmailChange(event.target.value)
-    this.setState({ email: event.target.value })
+  handleOrigAddress(event) {
+    this.validateOrigAddress(event.target.value)
+    this.setState({ orig_address: event.target.value })
   }
 
-  handlePasswordChange(event) {
-    this.setState({ password: event.target.value })
+  handleOrigUnit(event) {
+    this.validateOrigUnit(event.target.value)
+    this.setState({ orig_unit: event.target.value })
   }
 
-  handleConfirmationChange(event) {
-    this.setState({ password_confirmation: event.target.value })
+  handleOrigCity(event) {
+    this.validateOrigCity(event.target.value)
+    this.setState({ orig_city: event.target.value })
+  }
+
+  handleOrigState(event) {
+    this.validateOrigState(event.target.value)
+    this.setState({ orig_state: event.target.value })
+  }
+
+  handleOrigZip(event) {
+    this.validateOrigZip(event.target.value)
+    this.setState({ orig_zip: event.target.value })
+  }
+
+  handleOrigFloor(event) {
+    this.validateOrigFloor(event.target.value)
+    this.setState({ orig_floor: event.target.value })
+  }
+
+  handleOrigTruck(event) {
+    this.validateOrigTruck(event.target.value)
+    this.setState({ orig_truck: event.target.value })
+  }
+
+  handleOrigAccess(event) {
+    this.validateOrigAccess(event.target.value)
+    this.setState({ orig_access: event.target.value })
+  }
+
+  handleOrigDistance(event) {
+    this.validateOrigDistance(event.target.value)
+    this.setState({ orig_distance: event.target.value })
+  }
+
+  handleDestRooms(event) {
+    this.validateDestRooms(event.target.value)
+    this.setState({ dest_rooms: event.target.value })
+  }
+
+  handleDestAddress(event) {
+    this.validateDestAddress(event.target.value)
+    this.setState({ dest_address: event.target.value })
+  }
+
+  handleDestUnit(event) {
+    this.validateDestUnit(event.target.value)
+    this.setState({ dest_unit: event.target.value })
+  }
+
+  handleDestCity(event) {
+    this.validateDestCity(event.target.value)
+    this.setState({ dest_city: event.target.value })
+  }
+
+  handleDestState(event) {
+    this.validateDestState(event.target.value)
+    this.setState({ dest_state: event.target.value })
+  }
+
+  handleDestZip(event) {
+    this.validateDestZip(event.target.value)
+    this.setState({ dest_zip: event.target.value })
+  }
+
+  handleDestFloor(event) {
+    this.validateDestFloor(event.target.value)
+    this.setState({ dest_floor: event.target.value })
+  }
+
+  handleDestTruck(event) {
+    this.validateDestTruck(event.target.value)
+    this.setState({ dest_truck: event.target.value })
+  }
+
+  handleDestAccess(event) {
+    this.validateDestAccess(event.target.value)
+    this.setState({ dest_access: event.target.value })
+  }
+
+  handleDestDistance(event) {
+    this.validateDestDistance(event.target.value)
+    this.setState({ dest_distance: event.target.value })
   }
 
   validateFirstChange(name) {
@@ -172,108 +291,156 @@ class NewMove extends Component {
 
     return(
       <div className='registration row align-center'>
-        <form className='callout small-12 medium-10 large-6 columns' onSubmit={this.handleFormSubmit}>
+        <form className='callout small-12 medium-8 large-10 columns' onSubmit={this.handleFormSubmit}>
           <h3> lets get started! </h3>
           {errorDiv}
-          move_date: "",
-          origin_rooms: "",
-          orig_address: "",
-          orig_unit: "",
-          orig_city: "",
-          orig_state: "",
-          orig_zip: "",
-          orig_floor: "",
-          orig_truck_access: "",
-          orig_distance: "",
-          dest_rooms: "",
-          dest_address: "",
-          dest_unit: "",
-          dest_city: "",
-          dest_state: "",
-          dest_zip: "",
-          dest_floor: "",
-          dest_truck_access: "",
-          dest_distance: ""
           <div className="move-origin">
-          lets start by getting the basics out of the way:
-          <TextField
-            content={this.state.move_date}
-            label='when are you moving?'
-            name='move_date'
-            handlerFunction={this.handleMoveDate}
-            placeholder='mm/dd/yyyy'
-          />
-          where are you moving from?
-          <TextField
-            content={this.state.orig_address}
-            label='street address'
-            name='orig_address'
-            handlerFunction={this.handleOrigAddress}
-            placeholder='123 easy street'
-          />
-          <TextField
-            content={this.state.orig_unit}
-            label='unit, apartnemt, or suite number'
-            name='orig_unit'
-            handlerFunction={this.handleOrigUnit}
-            placeholder='1'
-          />
-          <TextField
-            content={this.state.orig_city}
-            label='city'
-            name='orig_city'
-            handlerFunction={this.handleOrigCity}
-            placeholder='city'
-          />
-          <TextField
-            content={this.state.orig_state}
-            label='state'
-            name='orig_state'
-            handlerFunction={this.handleOrigState}
-            placeholder='state'
-          />
-          <TextField
-            content={this.state.orig_zip}
-            label='zip code'
-            name='orig_zip'
-            handlerFunction={this.handleOrigZip}
-            placeholder='zip'
-          />
-          <TextField
-            content={this.state.orig_floor}
-            label='what floor is the entrance to your home on?'
-            name='orig_floor'
-            handlerFunction={this.handleOrigFloor}
-            placeholder='floor'
-          />
-        <Select
-            content={this.state.orig_city}
-            label='where can a mover plan on parking the truck?'
-            name='orig_truck_access'
-            handlerFunction={this.handleOrigTruck}
+            lets start by getting the basics out of the way:
+            <DateField
+              content={this.state.move_date}
+              label='when are you moving?'
+              name='move_date'
+              handlerFunction={this.handleMoveDate}
+              placeholder='"--/--/----"'
+            />
+            where are you moving from?
+            <TextField
+              content={this.state.orig_address}
+              label='street address'
+              name='orig_address'
+              handlerFunction={this.handleOrigAddress}
+              placeholder='123 easy street'
+            />
+            <TextField
+              content={this.state.orig_unit}
+              label='unit, apartnemt, or suite number'
+              name='orig_unit'
+              handlerFunction={this.handleOrigUnit}
+              placeholder='1'
+            />
+            <TextField
+              content={this.state.orig_city}
+              label='city'
+              name='orig_city'
+              handlerFunction={this.handleOrigCity}
+              placeholder='city'
+            />
+            <TextField
+              content={this.state.orig_state}
+              label='state'
+              name='orig_state'
+              handlerFunction={this.handleOrigState}
+              placeholder='state'
+            />
+            <TextField
+              content={this.state.orig_zip}
+              label='zip code'
+              name='orig_zip'
+              handlerFunction={this.handleOrigZip}
+              placeholder='zip'
+            />
+            <NumberField
+              content={this.state.orig_floor}
+              label='what floor are you moving from?'
+              name='orig_floor'
+              handlerFunction={this.handleOrigFloor}
+              placeholder=''
+            />
+            <SelectField
+              content={this.state.orig_access}
+              label='how do you get from the street level to your floor?'
+              name='orig_access'
+              handlerFunction={this.handleOrigTruck}
+              options={this.state.access_options}
+              selectedOption={this.state.orig_access}
+            />
+            <SelectField
+              label='where can a mover plan on parking the truck?'
+              name='orig_truck_access'
+              handlerFunction={this.handleOrigTruck}
+              options={this.state.truck_access_options}
+              selectedOption={this.state.orig_truck_access}
+            />
+            <p className="help-text" id="truckHelpText">
+              be sure to acquire any necessary parking permits or reservations in advance!
+            </p>
+          </div>
+          <div className="move-destination">
+            lets start by getting the basics out of the way:
+            <DateField
+              content={this.state.move_date}
+              label='when are you moving?'
+              name='move_date'
+              handlerFunction={this.handleMoveDate}
+              placeholder='"--/--/----"'
+            />
+            where are you moving from?
+            <TextField
+              content={this.state.dest_address}
+              label='street address'
+              name='dest_address'
+              handlerFunction={this.handleDestAddress}
+              placeholder='123 easy street'
+            />
+            <TextField
+              content={this.state.dest_unit}
+              label='unit, apartnemt, or suite number'
+              name='dest_unit'
+              handlerFunction={this.handleDestUnit}
+              placeholder='1'
+            />
+            <TextField
+              content={this.state.dest_city}
+              label='city'
+              name='dest_city'
+              handlerFunction={this.handleDestCity}
+              placeholder='city'
+            />
+            <TextField
+              content={this.state.dest_state}
+              label='state'
+              name='dest_state'
+              handlerFunction={this.handleDestState}
+              placeholder='state'
+            />
+            <TextField
+              content={this.state.dest_zip}
+              label='zip code'
+              name='dest_zip'
+              handlerFunction={this.handleDestZip}
+              placeholder='zip'
+            />
+            <NumberField
+              content={this.state.dest_floor}
+              label='what floor are you moving from?'
+              name='dest_floor'
+              handlerFunction={this.handleDestFloor}
+              placeholder=''
+            />
+            <SelectField
+              label='how do you get from the street level to your floor?'
+              name='dest_access'
+              handlerFunction={this.handleDestTruck}
+              options={this.state.access_options}
+              selectedOption={this.state.dest_access}
+            />
+            <SelectField
+              label='where can a mover plan on parking the truck?'
+              name='dest_truck_access'
+              handlerFunction={this.handleDestTruck}
+              options={this.state.truck_access_options}
+              selectedOption={this.state.dest_truck_access}
+            />
+            <p className="help-text" id="truckHelpText">
+              be sure to acquire any necessary parking permits or reservations in advance!
+            </p>
+          </div>
+          <TextAreaField
+            content={this.state.comments}
+            label='please provide any additional comments or clarification here'
+            name='comments'
+            handlerFunction={this.handleComments}
             placeholder=''
-          />
-          
-          <TextField
-            content={this.state.orig_city}
-            label='city'
-            name='orig_city'
-            handlerFunction={this.handleOrigCity}
-            placeholder='city'
-          />
-          <TextField
-            content={this.state.orig_city}
-            label='city'
-            name='orig_city'
-            handlerFunction={this.handleOrigCity}
-            placeholder='city'
-          />
-          <TextField
-            content={this.state.orig_city}
-            label='city'
-            name='orig_city'
-            handlerFunction={this.handleOrigCity}
-            placeholder='city'
           />
           <input type='submit' className='button'/>
         </form>

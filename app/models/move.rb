@@ -1,5 +1,5 @@
 class Move < ApplicationRecord
-  validates :origin_rooms, numericality: { only_integer: true, greater_than: 0 }
+  validates :orig_rooms, numericality: { only_integer: true, greater_than: 0 }
   validates :dest_rooms, numericality: { only_integer: true, greater_than: 0 }
   validates :move_date, presence: true
   validates :orig_address, presence: true

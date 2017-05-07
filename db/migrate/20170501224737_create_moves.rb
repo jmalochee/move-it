@@ -2,7 +2,7 @@ class CreateMoves < ActiveRecord::Migration[5.0]
   def change
     create_table :moves do |t|
       t.text :comments
-      t.string :origin_rooms
+      t.string :orig_rooms
       t.string :dest_rooms
       t.string :move_date, null: false
       t.string :orig_address, null: false
