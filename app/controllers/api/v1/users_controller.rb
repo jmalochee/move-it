@@ -11,7 +11,7 @@ class Api::V1::UsersController < ApplicationController
 
   end
 
-  def index #just an unused endpoint serving up :current_user
+  def index # just an unused endpoint serving up :current_user
     if user_signed_in?
       render json: { current_user: current_user }
     else
@@ -27,13 +27,7 @@ class Api::V1::UsersController < ApplicationController
       binding.pry
       render json: { message: ["registration successful!"], user_id: user.id }
     else
-      i = 0
-      errors = {}
-      user.errors.each do |k,v|
-        errors[k] = user.errors.full_messages[i]
-        i += 1
-      end
-      render json: { errors: errors }
+      render json: { errors: report(user.errors) }
     end
   end
 

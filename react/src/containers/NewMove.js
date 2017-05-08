@@ -32,17 +32,17 @@ class NewMove extends Component {
       dest_access: "",
       dest_truck_access: "",
       dest_distance: "",
-      access_options: [{
-        "1": "partial staircase",
-        "2": "multiple staircases",
-        "3": "elevator",
-        "4": "i can literally roll a ball from the street into the entrance"
-      }],
-      truck_access_options: [{
-        "1": "Loading Dock",
-        "2": "Street",
-        "3": "Driveway"
-      }]
+      access_options: [
+        {id: "1", name: "partial staircase"},
+        {id: "2", name: "multiple staircases"},
+        {id: "3", name: "elevator"},
+        {id: "4", name: "i can literally roll a ball from the street into the entrance"}
+      ],
+      truck_access_options: [
+        {id: "1", name: "Loading Dock"},
+        {id: "2", name: "Street"},
+        {id: "3", name: "Driveway"}
+      ]
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleMoveDate = this.handleMoveDate.bind(this);
@@ -69,214 +69,131 @@ class NewMove extends Component {
   }
 
   handleMoveDate(event) {
-    this.validateOrigRooms(event.target.value)
-    this.setState({ dest_rooms: event.target.value })
+    this.setState({ move_date: event.target.value })
   }
 
   handleOrigRooms(event) {
-    this.validateOrigRooms(event.target.value)
-    this.setState({ dest_rooms: event.target.value })
+    this.setState({ orig_rooms: event.target.value })
   }
 
   handleOrigAddress(event) {
-    this.validateOrigAddress(event.target.value)
     this.setState({ orig_address: event.target.value })
   }
 
   handleOrigUnit(event) {
-    this.validateOrigUnit(event.target.value)
     this.setState({ orig_unit: event.target.value })
   }
 
   handleOrigCity(event) {
-    this.validateOrigCity(event.target.value)
     this.setState({ orig_city: event.target.value })
   }
 
   handleOrigState(event) {
-    this.validateOrigState(event.target.value)
     this.setState({ orig_state: event.target.value })
   }
 
   handleOrigZip(event) {
-    this.validateOrigZip(event.target.value)
     this.setState({ orig_zip: event.target.value })
   }
 
   handleOrigFloor(event) {
-    this.validateOrigFloor(event.target.value)
     this.setState({ orig_floor: event.target.value })
   }
 
   handleOrigTruck(event) {
-    this.validateOrigTruck(event.target.value)
-    this.setState({ orig_truck: event.target.value })
+    this.setState({ orig_truck_access: event.target.value })
   }
 
   handleOrigAccess(event) {
-    this.validateOrigAccess(event.target.value)
     this.setState({ orig_access: event.target.value })
   }
 
   handleOrigDistance(event) {
-    this.validateOrigDistance(event.target.value)
     this.setState({ orig_distance: event.target.value })
   }
 
   handleDestRooms(event) {
-    this.validateDestRooms(event.target.value)
     this.setState({ dest_rooms: event.target.value })
   }
 
   handleDestAddress(event) {
-    this.validateDestAddress(event.target.value)
     this.setState({ dest_address: event.target.value })
   }
 
   handleDestUnit(event) {
-    this.validateDestUnit(event.target.value)
     this.setState({ dest_unit: event.target.value })
   }
 
   handleDestCity(event) {
-    this.validateDestCity(event.target.value)
     this.setState({ dest_city: event.target.value })
   }
 
   handleDestState(event) {
-    this.validateDestState(event.target.value)
     this.setState({ dest_state: event.target.value })
   }
 
   handleDestZip(event) {
-    this.validateDestZip(event.target.value)
     this.setState({ dest_zip: event.target.value })
   }
 
   handleDestFloor(event) {
-    this.validateDestFloor(event.target.value)
     this.setState({ dest_floor: event.target.value })
   }
 
   handleDestTruck(event) {
-    this.validateDestTruck(event.target.value)
-    this.setState({ dest_truck: event.target.value })
+    this.setState({ dest_truck_access: event.target.value })
   }
 
   handleDestAccess(event) {
-    this.validateDestAccess(event.target.value)
     this.setState({ dest_access: event.target.value })
   }
 
   handleDestDistance(event) {
-    this.validateDestDistance(event.target.value)
     this.setState({ dest_distance: event.target.value })
-  }
-
-  validateFirstChange(name) {
-    if (name === '' || name === ' ') {
-      let newError = { first_name: 'please provide your first name to continue' }
-      this.setState({ errors: Object.assign(this.state.errors, newError) })
-      return false
-    } else {
-      let errorState = this.state.errors
-      delete errorState.first_name
-      this.setState({ errors: errorState })
-      console.log(this.state.errors);
-
-      return true
-    }
-  }
-
-  validateLastChange(name) {
-    if (name === '' || name === ' ') {
-      let newError = { last_name: 'please provide your last name to continue' }
-      this.setState({ errors: Object.assign(this.state.errors, newError) })
-      return false
-    } else {
-      let errorState = this.state.errors
-      delete errorState.last_name
-      this.setState({ errors: errorState })
-      return true
-    }
-  }
-
-  validateEmailChange(email) {
-    if (email === '' || email === ' ') {
-      let newError = { email: 'please provide your email to continue' }
-      this.setState({ errors: Object.assign(this.state.errors, newError) })
-      return false
-    } else {
-      let errorState = this.state.errors
-      delete errorState.email
-      this.setState({ errors: errorState })
-      return true
-    }
-  }
-
-  validatePassword(pw) {
-    if ( pw.length >= 8 && pw.match(/[a-z]/i) && pw.match(/\d/) ) {
-      let errorState = this.state.errors
-      delete errorState.password
-      this.setState({ errors: errorState })
-      return true
-    } else {
-      let newError = { password: 'your password must have at least 8 characters, a number, and a letter' }
-      this.setState({ errors: Object.assign(this.state.errors, newError) })
-      return false
-    }
-  }
-
-  validateConfirmation(pw) {
-    if ( pw !== this.state.password ) {
-      let newError = { password_confirmation: 'password and confirmation do not match' }
-      this.setState({ errors: Object.assign(this.state.errors, newError) })
-      return false
-    } else {
-      let errorState = this.state.errors
-      delete errorState.password_confirmation
-      this.setState({ errors: errorState })
-      return true
-    }
   }
 
   handleFormSubmit(event) {
     event.preventDefault();
-    if (
-      this.validateFirstChange(this.state.first_name) &&
-      this.validateLastChange(this.state.last_name) &&
-      this.validateEmailChange(this.state.email) &&
-      this.validatePassword(this.state.password) &&
-      this.validateConfirmation(this.state.password_confirmation)
-    ) {
-      let requestBody = {
-        email: this.state.email.toLowerCase(),
-        first_name: this.state.first_name,
-        last_name: this.state.last_name,
-        password: this.state.password,
-        password_confirmation: this.state.password_confirmation
-      }
-      fetch('/api/v1/moves', {
-        credentials: "same-origin",
-        method: 'POST',
-        body: JSON.stringify(requestBody)
-      })
-      .then(response => {
-        let parsed = response.json()
-        return parsed
-      }).then(parsed => {
-        if ( parsed.message ) {
-        this.setState({ message: parsed.message })
-        window.location=`/moves/1`
+    let requestBody = {
+      move_date: this.state.move_date,
+      orig_rooms: this.state.orig_rooms,
+      orig_address: this.state.orig_address,
+      orig_unit: this.state.orig_unit,
+      orig_city: this.state.orig_city,
+      orig_state: this.state.orig_state,
+      orig_zip: this.state.orig_zip,
+      orig_floor: this.state.orig_floor,
+      orig_access: this.state.orig_access,
+      orig_truck_access: this.state.orig_truck_access,
+      orig_distance: this.state.orig_distance,
+      dest_rooms: this.state.dest_rooms,
+      dest_address: this.state.dest_address,
+      dest_unit: this.state.dest_unit,
+      dest_city: this.state.dest_city,
+      dest_state: this.state.dest_state,
+      dest_zip: this.state.dest_zip,
+      dest_floor: this.state.dest_floor,
+      dest_access: this.state.dest_access,
+      dest_truck_access: this.state.dest_truck_access,
+      dest_distance: this.state.dest_distance
+    }
+    debugger;
+    fetch('/api/v1/moves', {
+      credentials: "same-origin",
+      method: 'POST',
+      body: JSON.stringify(requestBody)
+    })
+    .then(response => {
+      let parsed = response.json()
+      return parsed
+    }).then(parsed => {
+      if ( parsed.message ) {
+      this.setState({ message: parsed.message })
+      window.location=`/moves/{parsed.move.id}`
       } else if ( parsed.errors ) {
         this.setState({ errors: parsed.errors })
       }
-      })
-    } else {
-      event.preventDefault();
-      this.validatePassword(this.state.password);
-      this.validateConfirmation(this.state.password_confirmation);
-    }
+    })
   }
 
   render() {
@@ -295,13 +212,13 @@ class NewMove extends Component {
           <h3> lets get started! </h3>
           {errorDiv}
           <div className="move-origin">
-            lets start by getting the basics out of the way:
+            lets get the basics out of the way:
             <DateField
               content={this.state.move_date}
               label='when are you moving?'
               name='move_date'
               handlerFunction={this.handleMoveDate}
-              placeholder='"--/--/----"'
+              placeholder='--/--/----'
             />
             where are you moving from?
             <TextField
@@ -313,7 +230,7 @@ class NewMove extends Component {
             />
             <TextField
               content={this.state.orig_unit}
-              label='unit, apartnemt, or suite number'
+              label='unit/apt/ste'
               name='orig_unit'
               handlerFunction={this.handleOrigUnit}
               placeholder='1'
@@ -350,7 +267,7 @@ class NewMove extends Component {
               content={this.state.orig_access}
               label='how do you get from the street level to your floor?'
               name='orig_access'
-              handlerFunction={this.handleOrigTruck}
+              handlerFunction={this.handleOrigAccess}
               options={this.state.access_options}
               selectedOption={this.state.orig_access}
             />
@@ -366,15 +283,7 @@ class NewMove extends Component {
             </p>
           </div>
           <div className="move-destination">
-            lets start by getting the basics out of the way:
-            <DateField
-              content={this.state.move_date}
-              label='when are you moving?'
-              name='move_date'
-              handlerFunction={this.handleMoveDate}
-              placeholder='"--/--/----"'
-            />
-            where are you moving from?
+            where are you moving to?
             <TextField
               content={this.state.dest_address}
               label='street address'
@@ -420,7 +329,7 @@ class NewMove extends Component {
             <SelectField
               label='how do you get from the street level to your floor?'
               name='dest_access'
-              handlerFunction={this.handleDestTruck}
+              handlerFunction={this.handleDestAccess}
               options={this.state.access_options}
               selectedOption={this.state.dest_access}
             />
@@ -441,6 +350,7 @@ class NewMove extends Component {
             name='comments'
             handlerFunction={this.handleComments}
             placeholder=''
+            rows='8'
           />
           <input type='submit' className='button'/>
         </form>

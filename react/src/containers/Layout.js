@@ -20,7 +20,7 @@ class Layout extends Component {
 
   render() {
     return(
-      <div>
+      <div className="background">
         <div className="row nav align-middle">
           <div className="column">
             <Link to="/"><h1>move it!</h1></Link>

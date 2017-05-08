@@ -7,6 +7,7 @@ const TextAreaField = props => {
         name={props.name}
         onChange={props.handlerFunction}
         placeholder={props.placeholder}
+        rows={props.rows}
       >
         {props.content}
       </textarea>

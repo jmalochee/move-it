@@ -1,3 +1,5 @@
+@import "settings";
+
 $primary-color: #BCE3C5;
 $secondary-color: #82B3AE;
 $text-color: #230F2B;
@@ -7,8 +9,20 @@ $button-background: #BCE3C5;
 
 body {
   color: #230F2B;
-  background: #EBEBBC;
   font-family: 'Marmelad', sans-serif;
+  background-color: #EBEBBC;
+}
+
+.background {
+  background: url('background1.jpg');
+  min-height: 100vh;
+  height: 100%;
+  background-position: center top;
+  background-repeat: no-repeat;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
 }
 
 a {
@@ -104,4 +118,9 @@ label {
 
 .newmovebutton {
   margin: 50px;
+}
+
+label {
+  font-size: .8em;
+  color: $secondary-color;
 }

@@ -145,9 +145,9 @@ class NewUser extends Component {
         if ( parsed.message ) {
         this.setState({ message: parsed.message })
         window.location=`/users/1`
-      } else if ( parsed.errors ) {
-        this.setState({ errors: parsed.errors })
-      }
+        } else if ( parsed.errors ) {
+          this.setState({ errors: parsed.errors })
+        }
       })
     } else {
       event.preventDefault();
