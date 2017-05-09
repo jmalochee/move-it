@@ -16,7 +16,7 @@ class UserShow extends Component {
     })
     .then(response => response.json())
     .then(responseData => {
-      this.setState({ current_user: responseData.current_user })
+      this.setState({ current_user: responseData })
       console.log(responseData)
     })
   }
@@ -26,8 +26,9 @@ class UserShow extends Component {
       <div className="userShow">
         <div className="small-12 medium-3 large-2 columns">
           <div className="row">
-            <div className="full_name">
-              full name here
+            <div className="user-panel">
+              {`${this.state.current_user.first_name} ${this.state.current_user.last_name}`}
+              {this.state.current_user.email}
             </div>
           </div>
         </div>

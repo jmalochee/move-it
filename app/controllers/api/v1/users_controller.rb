@@ -33,6 +33,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def currentUser
+    binding.pry
     render json: current_user
   end
 

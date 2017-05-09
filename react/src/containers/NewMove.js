@@ -218,13 +218,12 @@ class NewMove extends Component {
 
   navNextHandler() {
     this.formDivHandler(1);
-    this.toggleButtons();
     this.progressHandler()
   }
 
   navBackHandler() {
     this.formDivHandler(-1);
-    this.toggleButtons();
+    this.progressHandler()
   }
 
   progressHandler(step) {

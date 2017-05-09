@@ -10,13 +10,16 @@ class Layout extends Component {
   }
 
   componentDidMount(){
-    fetch('/api/v1/users')
+    fetch('/api/v1/user', {
+      credentials: "include",
+      method: 'GET'
+    })
     .then(response => response.json())
     .then(responseData => {
-      this.setState({ current_user: responseData.current_user })
+      this.setState({ current_user: responseData })
+      console.log(responseData)
     })
   }
-
 
   render() {
     return(
