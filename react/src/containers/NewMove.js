@@ -219,11 +219,16 @@ class NewMove extends Component {
   navNextHandler() {
     this.formDivHandler(1);
     this.toggleButtons();
+    this.progressHandler()
   }
 
   navBackHandler() {
     this.formDivHandler(-1);
     this.toggleButtons();
+  }
+
+  progressHandler(step) {
+    document.getElementById("newmove-progress").style.width = (20 * (step+1)) + "%";
   }
 
   formDivHandler(value) {
@@ -239,6 +244,7 @@ class NewMove extends Component {
     document.getElementById(formDivs[divIndex]).style.display = "block";
     this.setState({ current_div: divIndex });
     this.toggleButtons();
+    this.progressHandler(divIndex);
   }
 
   render() {
@@ -253,8 +259,11 @@ class NewMove extends Component {
 
     return(
       <div className='registration row align-center'>
-        <form className='callout small-12 medium-8 large-10 columns' onSubmit={this.handleFormSubmit}>
+        <form id='newmove' className='callout small-12 medium-8 large-10 columns' onSubmit={this.handleFormSubmit}>
           <h3> lets get started! </h3>
+          <div className="progress" role="progressbar">
+            <div id='newmove-progress' className='progress-meter'></div>
+          </div>
           {errorDiv}
           <div id="origin-addr">
             where are you moving from?
@@ -296,34 +305,40 @@ class NewMove extends Component {
           </div>
           <div id="origin-info">
             <NumberField
-              content={this.state.orig_floor}
-              label='what floor are you moving from?'
-              name='orig_floor'
-              handlerFunction={this.handleOrigFloor}
-              placeholder=''
-            />
-            <NumberField
               content={this.state.orig_rooms}
               label='how many rooms are there at this address?'
               name='orig_rooms'
               handlerFunction={this.handleOrigRooms}
-              placeholder=''
+              placeholder='#'
+              />
+            <NumberField
+              content={this.state.orig_floor}
+              label='what floor are you moving to?'
+              name='orig_floor'
+              handlerFunction={this.handleOrigFloor}
+              placeholder='#'
             />
             <SelectField
-              content={this.state.orig_access}
-              label='how do you get from the street level to your floor?'
-              name='orig_access'
-              handlerFunction={this.handleOrigAccess}
-              options={this.state.access_options}
-              selectedOption={this.state.orig_access}
-            />
-            <SelectField
-              label='where can a mover plan on parking the truck?'
+              label='where can the movers plan on parking the truck?'
               name='orig_truck_access'
               handlerFunction={this.handleOrigTruck}
               options={this.state.truck_access_options}
               selectedOption={this.state.orig_truck_access}
             />
+            <SelectField
+              label='how do you get from the truck to your floor?'
+              name='orig_access'
+              handlerFunction={this.handleOrigAccess}
+              options={this.state.access_options}
+              selectedOption={this.state.orig_access}
+              />
+              <NumberField
+                content={this.state.orig_distance}
+                label='about how far in feet will the trip be from the truck to your door?'
+                name='orig_distance'
+                handlerFunction={this.handleOrigDistance}
+                placeholder='#'
+              />
             <p className="help-text" id="truckHelpText">
               be sure to acquire any necessary parking permits or reservations in advance!
             </p>
@@ -368,33 +383,40 @@ class NewMove extends Component {
           </div>
           <div id="destination-info">
             <NumberField
+              content={this.state.dest_rooms}
+              label='how many rooms are there at this address?'
+              name='dest_rooms'
+              handlerFunction={this.handleDestRooms}
+              placeholder='#'
+              />
+            <NumberField
               content={this.state.dest_floor}
               label='what floor are you moving to?'
               name='dest_floor'
               handlerFunction={this.handleDestFloor}
               placeholder='#'
             />
-            <NumberField
-              content={this.state.dest_rooms}
-              label='how many rooms are there at this address?'
-              name='dest_rooms'
-              handlerFunction={this.handleDestRooms}
-              placeholder='#'
-            />
             <SelectField
-              label='how do you get from the street level to your floor?'
-              name='dest_access'
-              handlerFunction={this.handleDestAccess}
-              options={this.state.access_options}
-              selectedOption={this.state.dest_access}
-            />
-            <SelectField
-              label='where can a mover plan on parking the truck?'
+              label='where can the movers plan on parking the truck?'
               name='dest_truck_access'
               handlerFunction={this.handleDestTruck}
               options={this.state.truck_access_options}
               selectedOption={this.state.dest_truck_access}
             />
+            <SelectField
+              label='how do you get from the truck to your floor?'
+              name='dest_access'
+              handlerFunction={this.handleDestAccess}
+              options={this.state.access_options}
+              selectedOption={this.state.dest_access}
+              />
+              <NumberField
+                content={this.state.dest_distance}
+                label='about how far in feet will the trip be from the truck to your door?'
+                name='dest_distance'
+                handlerFunction={this.handleDestDistance}
+                placeholder='#'
+              />
             <p className="help-text" id="truckHelpText">
               be sure to acquire any necessary parking permits or reservations in advance!
             </p>
@@ -402,10 +424,11 @@ class NewMove extends Component {
           <div id='last-step'>
             <DateField
               content={this.state.move_date}
-              label='when are you moving?'
+              label='when are you planning to moving?'
               name='move_date'
               handlerFunction={this.handleMoveDate}
               placeholder='--/--/----'
+              size='30'
               />
             <TextAreaField
               content={this.state.comments}
@@ -414,6 +437,7 @@ class NewMove extends Component {
               handlerFunction={this.handleComments}
               placeholder='this is a great place to let movers know about tight corners accessing driveways, narrow staircases, whether you needed a hoist to get large items into the house, or other miscelaneous details or instructions'
               rows='8'
+              form='newmove'
             />
           </div>
           <div className='newmove-buttons row'>

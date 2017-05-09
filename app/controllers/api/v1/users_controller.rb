@@ -24,6 +24,7 @@ class Api::V1::UsersController < ApplicationController
     parsed = JSON.parse(body)
     user = User.new(parsed)
     if user.save
+      sign_in(user)
       binding.pry
       render json: { message: ["registration successful!"], user_id: user.id }
     else
@@ -31,6 +32,8 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-
+  def currentUser
+    render json: current_user
+  end
 
 end

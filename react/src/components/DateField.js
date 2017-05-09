@@ -9,6 +9,7 @@ const DateField = props => {
         type='date'
         value={props.content}
         placeholder={props.placeholder}
+        size={props.size}
       />
     </label>
   );

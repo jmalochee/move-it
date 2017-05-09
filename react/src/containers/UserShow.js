@@ -10,7 +10,7 @@ class UserShow extends Component {
   }
 
   componentDidMount(){
-    fetch('/api/v1/home', {
+    fetch('/api/v1/user', {
       credentials: "include",
       method: 'GET'
     })
