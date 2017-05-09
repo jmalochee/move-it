@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20170507192631) do
 
   create_table "moves", force: :cascade do |t|
     t.text     "comments"
-    t.string   "origin_rooms"
+    t.string   "orig_rooms"
     t.string   "dest_rooms"
     t.string   "move_date",         null: false
     t.string   "orig_address",      null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20170507192631) do
     t.integer  "user_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.string   "origin_access",     null: false
+    t.string   "orig_access",       null: false
     t.string   "dest_access",       null: false
     t.index ["user_id"], name: "index_moves_on_user_id", using: :btree
   end

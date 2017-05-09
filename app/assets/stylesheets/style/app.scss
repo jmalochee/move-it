@@ -10,14 +10,11 @@ $button-background: #BCE3C5;
 body {
   color: #230F2B;
   font-family: 'Marmelad', sans-serif;
-  background-color: #EBEBBC;
-}
-
-.background {
   background: url('background1.jpg');
   min-height: 100vh;
   height: 100%;
   background-position: center top;
+  background-attachment: fixed;
   background-repeat: no-repeat;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -120,7 +117,47 @@ label {
   margin: 50px;
 }
 
+.submit {
+  background-color: $accent-color;
+}
+
 label {
   font-size: .8em;
   color: $secondary-color;
+}
+
+#origin-addr {
+ display: block;
+}
+
+#origin-info {
+  display: none;
+}
+
+#destination-addr {
+  display: none;
+}
+
+#destination-info {
+  display: none;
+}
+
+#last-step {
+  display: none;
+}
+
+#newmovesubmit {
+  display: none;
+}
+
+#newmovenext {
+  display: inline;
+}
+
+#newmoveback {
+  display: none;
+}
+
+#last-step {
+  display: none;
 }

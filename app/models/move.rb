@@ -23,6 +23,6 @@ class Move < ApplicationRecord
   validates :dest_floor, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :dest_distance, numericality: { only_integer: true, greater_than: 0 }
 
-  t.belongs_to :user
+  belongs_to :user
 
 end

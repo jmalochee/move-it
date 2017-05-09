@@ -1,8 +1,10 @@
-class Api::V1::MoveController < ApplicationController
+class Api::V1::MovesController < ApplicationController
+  protect_from_forgery unless: -> { request.format.json? }
 
   def create
     body = request.body.read
     parsed = JSON.parse(body)
+    binding.pry
     move = Move.new(parsed)
     if move.save
       binding.pry

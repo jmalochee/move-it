@@ -11,6 +11,7 @@ class NewMove extends Component {
     this.state = {
       errors: {},
       message: {},
+      current_div: 0,
       move_date: "",
       orig_rooms: "",
       orig_address: "",
@@ -66,6 +67,10 @@ class NewMove extends Component {
     this.handleDestTruck = this.handleDestTruck.bind(this);
     this.handleDestAccess = this.handleDestAccess.bind(this);
     this.handleDestDistance = this.handleDestDistance.bind(this);
+    this.navNextHandler = this.navNextHandler.bind(this);
+    this.navBackHandler = this.navBackHandler.bind(this);
+    this.formDivHandler = this.formDivHandler.bind(this);
+    this.toggleButtons = this.toggleButtons.bind(this);
   }
 
   handleMoveDate(event) {
@@ -182,18 +187,58 @@ class NewMove extends Component {
       credentials: "same-origin",
       method: 'POST',
       body: JSON.stringify(requestBody)
-    })
-    .then(response => {
+    }).then(response => {
       let parsed = response.json()
       return parsed
     }).then(parsed => {
       if ( parsed.message ) {
-      this.setState({ message: parsed.message })
-      window.location=`/moves/{parsed.move.id}`
+        this.setState({ message: parsed.message });
+        window.location=`/moves/{parsed.move.id}`;
       } else if ( parsed.errors ) {
         this.setState({ errors: parsed.errors })
       }
     })
+  }
+
+  toggleButtons() {
+    if (document.getElementById("origin-addr").style.display === "block") {
+      document.getElementById("newmoveback").style.display = "none";
+      document.getElementById("newmovenext").style.display = "inline";
+      document.getElementById("newmovesubmit").style.display = "none";
+    } else if (document.getElementById("last-step").style.display === "block") {
+      document.getElementById("newmoveback").style.display = "inline";
+      document.getElementById("newmovenext").style.display = "none";
+      document.getElementById("newmovesubmit").style.display = "inline";
+    } else {
+      document.getElementById("newmoveback").style.display = "inline";
+      document.getElementById("newmovenext").style.display = "inline";
+      document.getElementById("newmovesubmit").style.display = "none";
+    }
+  }
+
+  navNextHandler() {
+    this.formDivHandler(1);
+    this.toggleButtons();
+  }
+
+  navBackHandler() {
+    this.formDivHandler(-1);
+    this.toggleButtons();
+  }
+
+  formDivHandler(value) {
+    let formDivs = [
+      "origin-addr",
+      "origin-info",
+      "destination-addr",
+      "destination-info",
+      "last-step"
+    ];
+    let divIndex = this.state.current_div + value
+    document.getElementById(formDivs[this.state.current_div]).style.display = "none";
+    document.getElementById(formDivs[divIndex]).style.display = "block";
+    this.setState({ current_div: divIndex });
+    this.toggleButtons();
   }
 
   render() {
@@ -211,15 +256,7 @@ class NewMove extends Component {
         <form className='callout small-12 medium-8 large-10 columns' onSubmit={this.handleFormSubmit}>
           <h3> lets get started! </h3>
           {errorDiv}
-          <div className="move-origin">
-            lets get the basics out of the way:
-            <DateField
-              content={this.state.move_date}
-              label='when are you moving?'
-              name='move_date'
-              handlerFunction={this.handleMoveDate}
-              placeholder='--/--/----'
-            />
+          <div id="origin-addr">
             where are you moving from?
             <TextField
               content={this.state.orig_address}
@@ -256,11 +293,20 @@ class NewMove extends Component {
               handlerFunction={this.handleOrigZip}
               placeholder='zip'
             />
+          </div>
+          <div id="origin-info">
             <NumberField
               content={this.state.orig_floor}
               label='what floor are you moving from?'
               name='orig_floor'
               handlerFunction={this.handleOrigFloor}
+              placeholder=''
+            />
+            <NumberField
+              content={this.state.orig_rooms}
+              label='how many rooms are there at this address?'
+              name='orig_rooms'
+              handlerFunction={this.handleOrigRooms}
               placeholder=''
             />
             <SelectField
@@ -282,7 +328,7 @@ class NewMove extends Component {
               be sure to acquire any necessary parking permits or reservations in advance!
             </p>
           </div>
-          <div className="move-destination">
+          <div id="destination-addr">
             where are you moving to?
             <TextField
               content={this.state.dest_address}
@@ -319,12 +365,21 @@ class NewMove extends Component {
               handlerFunction={this.handleDestZip}
               placeholder='zip'
             />
+          </div>
+          <div id="destination-info">
             <NumberField
               content={this.state.dest_floor}
-              label='what floor are you moving from?'
+              label='what floor are you moving to?'
               name='dest_floor'
               handlerFunction={this.handleDestFloor}
-              placeholder=''
+              placeholder='#'
+            />
+            <NumberField
+              content={this.state.dest_rooms}
+              label='how many rooms are there at this address?'
+              name='dest_rooms'
+              handlerFunction={this.handleDestRooms}
+              placeholder='#'
             />
             <SelectField
               label='how do you get from the street level to your floor?'
@@ -344,15 +399,32 @@ class NewMove extends Component {
               be sure to acquire any necessary parking permits or reservations in advance!
             </p>
           </div>
-          <TextAreaField
-            content={this.state.comments}
-            label='please provide any additional comments or clarification here'
-            name='comments'
-            handlerFunction={this.handleComments}
-            placeholder=''
-            rows='8'
-          />
-          <input type='submit' className='button'/>
+          <div id='last-step'>
+            <DateField
+              content={this.state.move_date}
+              label='when are you moving?'
+              name='move_date'
+              handlerFunction={this.handleMoveDate}
+              placeholder='--/--/----'
+              />
+            <TextAreaField
+              content={this.state.comments}
+              label='please provide any additional comments or clarification here'
+              name='comments'
+              handlerFunction={this.handleComments}
+              placeholder='this is a great place to let movers know about tight corners accessing driveways, narrow staircases, whether you needed a hoist to get large items into the house, or other miscelaneous details or instructions'
+              rows='8'
+            />
+          </div>
+          <div className='newmove-buttons row'>
+            <div className='column align-left'>
+              <input type='button' className='button' value='back' id='newmoveback' onClick={this.navBackHandler}/>
+            </div>
+            <div className='column text-right'>
+              <input type='button' className='button' value='next' id='newmovenext' onClick={this.navNextHandler}/>
+              <input type='submit' className='button submit' value='submit' id='newmovesubmit'/>
+            </div>
+          </div>
         </form>
       </div>
     )
