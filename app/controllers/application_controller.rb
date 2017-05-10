@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  helper_method :current_user, :user_signed_in, :sign_in
   protect_from_forgery with: :exception
 
   def report(output) # returns .full_messages in hash paired with original keys

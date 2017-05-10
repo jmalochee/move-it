@@ -1,6 +1,5 @@
 class Api::V1::HomeController < ApplicationController
   skip_before_action :verify_authenticity_token
-  helper_method :current_user, :user_signed_in, :sign_in
   protect_from_forgery unless: -> { request.format.json? }
 
   def index
