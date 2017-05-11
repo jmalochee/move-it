@@ -31,7 +31,6 @@ class Api::V1::UsersController < ApplicationController
     user = User.new(parsed)
     if user.save
       sign_in(user)
-      binding.pry
       render json: { message: ["registration successful!"], email: user.email }
     else
       render json: { errors: report(user.errors) }

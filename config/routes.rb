@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'static_pages#index'
 
-  
+
 
   namespace :api do
     namespace :v1 do
@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       resources :sessions, only: [ :new, :create, :destroy ]
     end
   end
+
+  get '/api/v1/home', to: 'api/v1/home#index'
 
   get '*path', to: 'static_pages#index'
 end
