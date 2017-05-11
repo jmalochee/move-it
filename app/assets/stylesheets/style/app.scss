@@ -71,10 +71,6 @@ input .button {
   font-size: .8em;
 }
 
-label {
-  font-size: 1.1em;
-}
-
 .registration button {
   margin: 50px;
 }
@@ -123,7 +119,7 @@ label {
 
 label {
   font-size: .8em;
-  color: $secondary-color;
+  color: darken( $secondary-color, 20% );
 }
 
 #origin-addr {
@@ -170,4 +166,8 @@ label {
   width: 20%;
   height: 3px;
   background-color: $accent-color;
+}
+
+.help-text {
+  color: $secondary-color;
 }
