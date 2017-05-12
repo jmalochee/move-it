@@ -22,10 +22,6 @@ body {
   background-size: cover;
 }
 
-.background {
-  max-width: 100%;
-}
-
 a {
   color: #BCE3C5;
 }
@@ -35,8 +31,7 @@ a {
    padding-left: 20px;
    padding-right: 20px;
    color: $primary-color;
-   font-size: 1.5em;
-   max-width: 100%;
+   font-size: 1.5em
  }
 
 .nav a {

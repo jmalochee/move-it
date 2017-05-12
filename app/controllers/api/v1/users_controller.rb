@@ -33,5 +33,4 @@ class Api::V1::UsersController < ApplicationController
     !current_user.nil?
   end
 
-
 end

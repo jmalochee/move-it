@@ -10,6 +10,7 @@ gem 'foundation-rails'
 gem 'bcrypt'
 gem 'active_model_serializers'
 gem "oauth2"
+gem "dotenv-rails"
 gem "omniauth-google-oauth2", "~> 0.2.1"
 
 group :development do

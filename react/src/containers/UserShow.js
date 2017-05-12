@@ -22,10 +22,10 @@ class UserShow extends Component {
   render() {
     return(
       <div className="userShow">
-        <div className="small-12 medium-2 large-2 columns">
+        <div className="small-12 medium-4 large-3 columns">
           <div className="user-panel row large-up-1">
             <div className="column">
-              <div className="card text-center">
+              <div className="card">
                 <div className="card-section user-image">
                   <img src="https://i.imgur.com/oXghwZK.png"/>
                 </div>
