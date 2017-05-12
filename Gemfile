@@ -9,7 +9,6 @@ gem 'jquery-rails'
 gem 'foundation-rails'
 gem 'bcrypt'
 gem 'active_model_serializers'
-gem "doorkeeper"
 gem "oauth2"
 gem "omniauth-google-oauth2", "~> 0.2.1"
 
