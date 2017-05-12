@@ -5,7 +5,7 @@ import Register from './components/Register';
 import NewUser from './containers/NewUser';
 import UserShow from './containers/UserShow';
 import NewMove from './containers/NewMove';
-import MoveShow from './components/MoveShow';
+import MoveShow from './containers/MoveShow';
 import Splash from './components/Splash';
 
 let routes = (

@@ -10,7 +10,7 @@ $button-background: #BCE3C5;
 body {
   color: #230F2B;
   font-family: 'Marmelad', sans-serif;
-  background: url('background1.jpg');
+  background-image: url('background1.jpg');
   min-height: 100vh;
   height: 100%;
   background-position: center top;
@@ -71,10 +71,6 @@ input .button {
   font-size: .8em;
 }
 
-label {
-  font-size: 1.1em;
-}
-
 .registration button {
   margin: 50px;
 }
@@ -123,7 +119,7 @@ label {
 
 label {
   font-size: .8em;
-  color: $secondary-color;
+  color: darken( $secondary-color, 20% );
 }
 
 #origin-addr {
@@ -170,4 +166,22 @@ label {
   width: 20%;
   height: 3px;
   background-color: $accent-color;
+}
+
+.help-text {
+  color: $secondary-color;
+}
+
+.user-image {
+  border-radius: 50%;
+  max-width:100%;
+  max-height:100%;
+}
+
+.card {
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  background-color: $background-color;
+  box-shadow: 10px 10px 5px 
 }

@@ -10,40 +10,34 @@ class UserShow extends Component {
   }
 
   componentDidMount(){
-    fetch('/api/v1/user', {
+    fetch('/api/v1/user.json', {
       credentials: "include",
       method: 'GET'
     })
     .then(response => response.json())
     .then(responseData => {
-      this.setState({ current_user: responseData.current_user })
-      console.log(responseData)
+      this.setState({ current_user: responseData })
     })
   }
 
   render() {
     return(
       <div className="userShow">
-        <div className="small-12 medium-3 large-2 columns">
-          <div className="row">
-            <div className="full_name">
-              full name here
-            </div>
-          </div>
-        </div>
-        <div className="small-12 medium-6 large-8 columns">
-          <div className="row">
+        <div className="small-12 medium-4 large-3 columns">
+          <div className="user-panel row large-up-1">
             <div className="column">
-              {this.props.children}
+              <div className="card">
+                <div className="card-section user-image">
+                  <img src="https://i.imgur.com/oXghwZK.png"/>
+                </div>
+                {`${this.state.current_user.name}`}
+                {this.state.current_user.email}
+              </div>
             </div>
           </div>
         </div>
-        <div className="small-12 medium-3 large-2 columns">
-          <div className="row">
-            <div className="inventory">
-              <h2>inventory</h2>
-            </div>
-          </div>
+        <div className="small-12 medium-8 large-9 columns">
+          {this.props.children}
         </div>
       </div>
     )

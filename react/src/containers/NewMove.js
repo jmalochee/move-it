@@ -9,10 +9,12 @@ class NewMove extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      current_user: {},
       errors: {},
       message: {},
       current_div: 0,
       move_date: "",
+      comments: "",
       orig_rooms: "",
       orig_address: "",
       orig_unit: "",
@@ -67,6 +69,7 @@ class NewMove extends Component {
     this.handleDestTruck = this.handleDestTruck.bind(this);
     this.handleDestAccess = this.handleDestAccess.bind(this);
     this.handleDestDistance = this.handleDestDistance.bind(this);
+    this.handleComments = this.handleComments.bind(this);
     this.navNextHandler = this.navNextHandler.bind(this);
     this.navBackHandler = this.navBackHandler.bind(this);
     this.formDivHandler = this.formDivHandler.bind(this);
@@ -157,6 +160,22 @@ class NewMove extends Component {
     this.setState({ dest_distance: event.target.value })
   }
 
+  handleComments(event) {
+    this.setState({ comments: event.target.value })
+  }
+
+  componentDidMount(){
+    fetch('/api/v1/user.json', {
+      credentials: "include",
+      method: 'GET'
+    })
+    .then(response => response.json())
+    .then(responseData => {
+      this.setState({ current_user: responseData })
+      console.log(responseData)
+    })
+  }
+
   handleFormSubmit(event) {
     event.preventDefault();
     let requestBody = {
@@ -180,9 +199,10 @@ class NewMove extends Component {
       dest_floor: this.state.dest_floor,
       dest_access: this.state.dest_access,
       dest_truck_access: this.state.dest_truck_access,
-      dest_distance: this.state.dest_distance
+      dest_distance: this.state.dest_distance,
+      comments: this.state.comments,
+      user_id: this.state.current_user.id
     }
-    debugger;
     fetch('/api/v1/moves', {
       credentials: "same-origin",
       method: 'POST',
@@ -193,7 +213,7 @@ class NewMove extends Component {
     }).then(parsed => {
       if ( parsed.message ) {
         this.setState({ message: parsed.message });
-        window.location=`/moves/{parsed.move.id}`;
+        window.location=`/moves/${parsed.move.id}`;
       } else if ( parsed.errors ) {
         this.setState({ errors: parsed.errors })
       }
@@ -218,13 +238,12 @@ class NewMove extends Component {
 
   navNextHandler() {
     this.formDivHandler(1);
-    this.toggleButtons();
     this.progressHandler()
   }
 
   navBackHandler() {
     this.formDivHandler(-1);
-    this.toggleButtons();
+    this.progressHandler()
   }
 
   progressHandler(step) {
@@ -313,7 +332,7 @@ class NewMove extends Component {
               />
             <NumberField
               content={this.state.orig_floor}
-              label='what floor are you moving to?'
+              label='what floor are you moving from?'
               name='orig_floor'
               handlerFunction={this.handleOrigFloor}
               placeholder='#'
@@ -325,6 +344,9 @@ class NewMove extends Component {
               options={this.state.truck_access_options}
               selectedOption={this.state.orig_truck_access}
             />
+            <p className="help-text" id="truckHelpText">
+              be sure to acquire any necessary parking permits or reservations in advance!
+            </p>
             <SelectField
               label='how do you get from the truck to your floor?'
               name='orig_access'
@@ -334,13 +356,13 @@ class NewMove extends Component {
               />
               <NumberField
                 content={this.state.orig_distance}
-                label='about how far in feet will the trip be from the truck to your door?'
+                label='about how far will the trip be from the truck to your door?'
                 name='orig_distance'
                 handlerFunction={this.handleOrigDistance}
                 placeholder='#'
               />
-            <p className="help-text" id="truckHelpText">
-              be sure to acquire any necessary parking permits or reservations in advance!
+            <p className="help-text" id="distanceHelpText">
+              the distance in feet, without counting any stairs
             </p>
           </div>
           <div id="destination-addr">
@@ -403,22 +425,25 @@ class NewMove extends Component {
               options={this.state.truck_access_options}
               selectedOption={this.state.dest_truck_access}
             />
+            <p className="help-text" id="truckHelpText">
+              be sure to acquire any necessary parking permits or reservations in advance!
+            </p>
             <SelectField
               label='how do you get from the truck to your floor?'
               name='dest_access'
               handlerFunction={this.handleDestAccess}
               options={this.state.access_options}
               selectedOption={this.state.dest_access}
-              />
-              <NumberField
-                content={this.state.dest_distance}
-                label='about how far in feet will the trip be from the truck to your door?'
-                name='dest_distance'
-                handlerFunction={this.handleDestDistance}
-                placeholder='#'
-              />
-            <p className="help-text" id="truckHelpText">
-              be sure to acquire any necessary parking permits or reservations in advance!
+            />
+            <NumberField
+              content={this.state.dest_distance}
+              label='about how far in feet will the trip be from the truck to your door?'
+              name='dest_distance'
+              handlerFunction={this.handleDestDistance}
+              placeholder='#'
+            />
+            <p className="help-text" id="distanceHelpText">
+              the distance in feet, without counting any stairs
             </p>
           </div>
           <div id='last-step'>
