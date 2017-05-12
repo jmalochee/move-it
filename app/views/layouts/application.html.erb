@@ -13,7 +13,19 @@
   </head>
 
   <body>
-    <div className="row column">
+    <div class="row column background">
+      <div class="row nav align-middle">
+        <div class="column">
+          <h1><%= link_to "move it!", "/"%></h1>
+        </div>
+        <% if current_user %>
+          signed in as &nbsp; <%= link_to current_user.name, "/users/#{current_user.id}" %>
+          <span> &nbsp; | &nbsp; </span>
+          <%= link_to "sign out", signout_path, id: "sign_out" %>
+        <% else %>
+          <%= link_to "sign in", "/auth/google_oauth2", id: "sign_in" %>
+        <% end %>
+      </div>
       <%= yield %>
     </div>
   </body>

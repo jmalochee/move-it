@@ -9,16 +9,20 @@ class UserShow extends Component {
   }
 
   componentDidMount(){
-    fetch('/api/v1/home')
+    fetch('/api/v1/user.json', {
+      credentials: "include",
+      method: 'GET'
+    })
     .then(response => response.json())
     .then(responseData => {
-      this.setState({ current_user: responseData.current_user })
+      this.setState({ current_user: responseData })
     })
   }
 
   render() {
     return(
       <div className="userShow">
+<<<<<<< HEAD
         <div className="small-12 medium-3 large-2 columns">
           <div className="row">
             this is where the user panel goes
@@ -33,6 +37,23 @@ class UserShow extends Component {
           <div className="row">
             this is where move inventory goes!
           </div>
+=======
+        <div className="small-12 medium-4 large-3 columns">
+          <div className="user-panel row large-up-1">
+            <div className="column">
+              <div className="card">
+                <div className="card-section user-image">
+                  <img src="https://i.imgur.com/oXghwZK.png"/>
+                </div>
+                {`${this.state.current_user.name}`}
+                {this.state.current_user.email}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="small-12 medium-8 large-9 columns">
+          {this.props.children}
+>>>>>>> 9278fe9cf6930be1cb2142cf2f3d78c82870650c
         </div>
       </div>
     )

@@ -3,8 +3,9 @@ class Api::V1::UsersController < ApplicationController
   helper_method :current_user, :user_signed_in
 
   def show
-    binding.pry
+  end
 
+  def index # just an unused endpoint serving up :current_user
   end
 
   def create
@@ -13,33 +14,7 @@ class Api::V1::UsersController < ApplicationController
     user = User.new(parsed)
     if user.save
       sign_in(user)
-      render json: { message: ["registration successful!"] }
-    else
-      i = 0
-      errors = {}
-      user.errors.each do |k,v|
-        errors[k] = user.errors.full_messages[i]
-        i += 1
-      end
-      render json: { errors: errors }
-    end
-  end
-
-  def current_user
-    if session[:user_id]
-      @current_user ||= User.find(session[:user_id])
-    end
-  end
-
-  def auth_nav
-    session[:auth_path] = request.path
-  end
-
-  def auth_path
-    if session[:auth_path].present?
-      auth_path = session[:auth_path]
-      session.delete(:auth_path)
-      return auth_path
+      render json: { message: ["registration successful!"], email: user.email }
     else
       return root_path
     end

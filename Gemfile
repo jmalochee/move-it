@@ -9,6 +9,10 @@ gem 'jquery-rails'
 gem 'foundation-rails'
 gem 'bcrypt'
 gem 'active_model_serializers'
+gem "doorkeeper"
+gem "oauth2"
+gem "omniauth-google-oauth2", "~> 0.2.1"
+
 group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'

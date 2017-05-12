@@ -13,7 +13,7 @@ class Inventory extends Component {
       <li>{item.qty} x {item.name}</li>
     })
     return(
-      <div className="inventory column">
+      <div className="inventory row column">
         <h2>inventory</h2>
         <ul className="inventory-list">
           {things}
