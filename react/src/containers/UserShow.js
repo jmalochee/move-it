@@ -22,22 +22,6 @@ class UserShow extends Component {
   render() {
     return(
       <div className="userShow">
-<<<<<<< HEAD
-        <div className="small-12 medium-3 large-2 columns">
-          <div className="row">
-            this is where the user panel goes
-          </div>
-        </div>
-        <div className="small-12 medium-6 large-8 columns">
-          <div className="row">
-            this is where the selected move info goes!
-          </div>
-        </div>
-        <div className="small-12 medium-3 large-2 columns">
-          <div className="row">
-            this is where move inventory goes!
-          </div>
-=======
         <div className="small-12 medium-4 large-3 columns">
           <div className="user-panel row large-up-1">
             <div className="column">
@@ -53,7 +37,6 @@ class UserShow extends Component {
         </div>
         <div className="small-12 medium-8 large-9 columns">
           {this.props.children}
->>>>>>> 9278fe9cf6930be1cb2142cf2f3d78c82870650c
         </div>
       </div>
     )
