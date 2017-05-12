@@ -9,7 +9,6 @@ const NumberField = props => {
         type='number'
         value={props.content}
         placeholder={props.placeholder}
-        pattern="[123456789]\d*"
       />
     </label>
   );

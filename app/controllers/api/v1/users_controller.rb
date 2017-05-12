@@ -1,28 +1,10 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :force_load_session
   protect_from_forgery unless: -> { request.format.json? }
 
-  def force_load_session
-    session[:init] = true
-  end
-
   def show
-    binding.pry
-    if user_signed_in?
-      render json: { current_user: current_user.email }
-    else
-      render json: { current_user: "bob" }
-    end
-
   end
 
   def index # just an unused endpoint serving up :current_user
-    binding.pry
-    if user_signed_in?
-      render json: { current_user: current_user }
-    else
-      render json: { current_user: {} }
-    end
   end
 
   def create

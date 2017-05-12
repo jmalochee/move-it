@@ -171,3 +171,17 @@ label {
 .help-text {
   color: $secondary-color;
 }
+
+.user-image {
+  border-radius: 50%;
+  max-width:100%;
+  max-height:100%;
+}
+
+.card {
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  background-color: $background-color;
+  box-shadow: 10px 10px 5px 
+}
