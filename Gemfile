@@ -7,6 +7,11 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'foundation-rails'
+gem 'bcrypt'
+gem 'active_model_serializers'
+gem "doorkeeper"
+gem "oauth2"
+
 group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
@@ -22,6 +27,7 @@ group :development, :test do
   gem 'shoulda'
   gem 'shoulda-matchers', '~> 2.8.0'
   gem 'valid_attribute'
+  gem 'capybara-webkit'
 end
 
 group :production do

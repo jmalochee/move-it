@@ -1,0 +1,173 @@
+@import "settings";
+
+$primary-color: #BCE3C5;
+$secondary-color: #82B3AE;
+$text-color: #230F2B;
+$background-color: #EBEBBC;
+$accent-color: #F21D41;
+$button-background: #BCE3C5;
+
+body {
+  color: #230F2B;
+  font-family: 'Marmelad', sans-serif;
+  background-image: url('background1.jpg');
+  min-height: 100vh;
+  height: 100%;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+a {
+  color: #BCE3C5;
+}
+
+.nav {
+   background-color: #82B3AE;
+   padding-left: 20px;
+   padding-right: 20px;
+   color: $primary-color;
+   font-size: 1.5em
+ }
+
+.nav a {
+  color: $text-color;
+}
+
+.auth a:hover {
+  color: $background-color;
+}
+
+h1 {
+  font-family: 'Fredericka the Great', serif;
+  font-size: 3em;
+}
+
+h2 {
+  font-family: 'Fredericka the Great', serif;
+}
+
+h3 {
+  font-family: 'Fredericka the Great', serif;
+}
+
+h4 {
+  font-family: 'Fredericka the Great', serif;
+}
+
+h5 {
+  font-family: 'Fredericka the Great', serif;
+}
+
+input .button {
+  color: $secondary-color;
+}
+
+.alert {
+  font-size: .8em;
+}
+
+label {
+  font-size: 1.1em;
+}
+
+.registration button {
+  margin: 50px;
+}
+
+.registration {
+  padding: 50px;
+  font-size: 1.2em;
+}
+
+.blurb {
+  padding: 50px;
+}
+
+.splash {
+  margin-top: 100px;
+  padding: 50px;
+  font-size: 16pt;
+}
+
+#splash-name {
+  margin: 25px;
+  font-size: 75pt;
+}
+
+.wizard {
+  font-size: 25pt;
+  font-family: 'Fredericka the Great', serif;
+
+}
+
+.userShow {
+  padding-top: 25px;
+}
+
+.inventory {
+  padding-right: 25px;
+}
+
+.newmovebutton {
+  margin: 50px;
+}
+
+.submit {
+  background-color: $accent-color;
+}
+
+label {
+  font-size: .8em;
+  color: $secondary-color;
+}
+
+#origin-addr {
+ display: block;
+}
+
+#origin-info {
+  display: none;
+}
+
+#destination-addr {
+  display: none;
+}
+
+#destination-info {
+  display: none;
+}
+
+#last-step {
+  display: none;
+}
+
+#newmovesubmit {
+  display: none;
+}
+
+#newmovenext {
+  display: inline;
+}
+
+#newmoveback {
+  display: none;
+}
+
+#last-step {
+  display: none;
+}
+
+.progress {
+  height: 3px;
+}
+
+#newmove-progress {
+  width: 20%;
+  height: 3px;
+  background-color: $accent-color;
+}
