@@ -16,11 +16,13 @@
 # Ignore Byebug command history file.
 .byebug_history
 
+# Ignore uploaded files in test/development
+/public/uploads
+
 # Ignore other things
-/coverage
 /node_modules
 /node_modules/*
 /app/assets/javascripts/bundle.js
-/public/uploads
-.env
 .DS_Store
+/notes
+.env
