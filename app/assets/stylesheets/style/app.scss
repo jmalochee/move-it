@@ -10,7 +10,7 @@ $button-background: #BCE3C5;
 body {
   color: #230F2B;
   font-family: 'Marmelad', sans-serif;
-  background-image: url('background1.jpg');
+  background-image: url('/assets/background1.jpg');
   min-height: 100vh;
   height: 100%;
   background-position: center top;
@@ -183,5 +183,5 @@ label {
   border-style: solid;
   border-color: black;
   background-color: $background-color;
-  box-shadow: 10px 10px 5px 
+  box-shadow: 10px 10px 5px
 }
