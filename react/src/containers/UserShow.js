@@ -30,7 +30,10 @@ class UserShow extends Component {
                   <img src="https://i.imgur.com/oXghwZK.png"/>
                 </div>
                 <p>
-                  {`${this.state.current_user.name}`}
+                  <strong>{`${this.state.current_user.name}`}</strong>
+                </p>
+                <p>
+                  contact info:
                 </p>
                 <p>
                   {this.state.current_user.email}
@@ -38,12 +41,9 @@ class UserShow extends Component {
                 <p>
                   {this.state.current_user.phone}
                 </p>
-                <p>
-                  {this.state.current_user.email}
-                </p>
                 <div className="edit-button text-right">
                   <div className="button large">
-                    edit <i className="fa fa-pencil" aria-hidden="true"></i>
+                    <i className="fa fa-pencil" aria-hidden="true"></i>
                   </div>
                 </div>
               </div>
