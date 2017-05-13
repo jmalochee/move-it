@@ -5,9 +5,6 @@ class Api::V1::UsersController < ApplicationController
   def show
   end
 
-  def index # just an unused endpoint serving up :current_user
-  end
-
   def create
     body = request.body.read
     parsed = JSON.parse(body)
@@ -20,18 +17,8 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  def sign_in(user)
-    session[:user_id] = user.id
+  def currentUser
+    render json: current_user
   end
-
-  def sign_out
-    session.delete(:user_id)
-    @current_user = nil
-  end
-
-  def user_signed_in?
-    !current_user.nil?
-  end
-
 
 end

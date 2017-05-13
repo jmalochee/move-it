@@ -16,6 +16,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/api/v1/home', to: 'api/v1/home#index'
   get '*path', to: 'static_pages#index'
 end

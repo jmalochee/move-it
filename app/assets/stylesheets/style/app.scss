@@ -22,6 +22,10 @@ body {
   background-size: cover;
 }
 
+.background {
+  max-width: 100%;
+}
+
 a {
   color: #BCE3C5;
 }
@@ -31,7 +35,7 @@ a {
    padding-left: 20px;
    padding-right: 20px;
    color: $primary-color;
-   font-size: 1.5em
+   font-size: 1.5em;
  }
 
 .nav a {
@@ -184,4 +188,12 @@ label {
   border-color: black;
   background-color: $background-color;
   box-shadow: 10px 10px 5px
+}
+
+.edit-button .button{
+  margin: 0 10px 10px 0;
+}
+
+.card {
+  font-size: 1.5em;
 }

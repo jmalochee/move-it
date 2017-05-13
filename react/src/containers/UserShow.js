@@ -25,12 +25,27 @@ class UserShow extends Component {
         <div className="small-12 medium-4 large-3 columns">
           <div className="user-panel row large-up-1">
             <div className="column">
-              <div className="card">
+              <div className="card text-center">
                 <div className="card-section user-image">
                   <img src="https://i.imgur.com/oXghwZK.png"/>
                 </div>
-                {`${this.state.current_user.name}`}
-                {this.state.current_user.email}
+                <p>
+                  {`${this.state.current_user.name}`}
+                </p>
+                <p>
+                  {this.state.current_user.email}
+                </p>
+                <p>
+                  {this.state.current_user.phone}
+                </p>
+                <p>
+                  {this.state.current_user.email}
+                </p>
+                <div className="edit-button text-right">
+                  <div className="button large">
+                    edit <i className="fa fa-pencil" aria-hidden="true"></i>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
