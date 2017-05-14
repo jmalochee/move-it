@@ -11,6 +11,11 @@ class User < ApplicationRecord
   end
 
   validates :email, uniqueness: true, allow_nil: true
+  validates :phone, uniqueness: true, allow_nil: true
 
   has_many :moves
+
+  def phone_neat
+    user.phone.gsub(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")
+  end
 end

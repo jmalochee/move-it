@@ -7,6 +7,7 @@ import UserShow from './containers/UserShow';
 import NewMove from './containers/NewMove';
 import MoveShow from './containers/MoveShow';
 import Splash from './components/Splash';
+import EditUser from './containers/EditUser'
 
 let routes = (
     <Route path="/" component={Layout}>
@@ -15,6 +16,7 @@ let routes = (
       <Route path="/users/:id" component={UserShow}>
         <IndexRoute component={MoveShow}/>
         <Route path="/moves/new" component={NewMove}/>
+        <Route path="/user/edit" component={EditUser}/>
       </Route>
       <Route path="/splash" component={Splash}/>
     </Route>

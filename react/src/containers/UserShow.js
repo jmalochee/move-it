@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
+import EditUser from './EditUser'
 
 class UserShow extends Component {
   constructor(props) {
@@ -6,9 +8,10 @@ class UserShow extends Component {
     this.state = {
       current_user: {}
     }
+    this.getUser = this.getUser.bind(this);
   }
 
-  componentDidMount(){
+  getUser(){
     fetch('/api/v1/user.json', {
       credentials: "include",
       method: 'GET'
@@ -19,7 +22,22 @@ class UserShow extends Component {
     })
   }
 
+  componentDidMount(){
+    this.getUser()
+  }
+
   render() {
+    let initAccount = () => {
+      if (this.state.current_user.email) {
+        return (this.props.children)
+      } else {
+        return (
+          <EditUser
+            getUser={this.getUser}
+            current_user={this.state.current_user}
+          />)
+      }
+    }
     return(
       <div className="userShow">
         <div className="small-12 medium-4 large-3 columns">
@@ -32,7 +50,7 @@ class UserShow extends Component {
                 <p>
                   <strong>{`${this.state.current_user.name}`}</strong>
                 </p>
-                <p>
+                <p className="text-left">
                   contact info:
                 </p>
                 <p>
@@ -42,16 +60,18 @@ class UserShow extends Component {
                   {this.state.current_user.phone}
                 </p>
                 <div className="edit-button text-right">
-                  <div className="button large">
-                    <i className="fa fa-pencil" aria-hidden="true"></i>
-                  </div>
+                  <Link to="/user/edit">
+                    <div className="button large">
+                      <i className="fa fa-pencil" aria-hidden="true"></i>
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div className="small-12 medium-8 large-9 columns">
-          {this.props.children}
+          {initAccount()}
         </div>
       </div>
     )

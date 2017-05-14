@@ -5,13 +5,13 @@ class Api::V1::UsersController < ApplicationController
   def show
   end
 
-  def create
+  def update
+    binding.pry
     body = request.body.read
     parsed = JSON.parse(body)
-    user = User.new(parsed)
-    if user.save
-      sign_in(user)
-      render json: { message: ["registration successful!"], email: user.email }
+    user = User.find(params[:id])
+    if user.update(parsed)
+      render json: { message: ["update successful!"], current_user: current_user }
     else
       return root_path
     end
