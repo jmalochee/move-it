@@ -43,7 +43,7 @@ class EditUser extends Component {
   }
 
   validateEmail(email) {
-    if (email === '' && !this.props.current_user.email) {
+    if (email === '' && !this.state.current_user.email) {
       let newError = { email: 'please provide your email to continue' }
       this.setState({ errors: Object.assign(this.state.errors, newError) })
       return false
@@ -82,8 +82,7 @@ class EditUser extends Component {
         this.validatePhone(this.state.phone) &&
         this.validateEmail(this.state.email)
       ) {
-        debugger
-        fetch(`/api/v1/users/${this.props.current_user.id}.json`, {
+        fetch(`/api/v1/users/${this.state.current_user.id}.json`, {
           method: 'PATCH',
           credentials: "include",
           body: JSON.stringify(this.loadRequestBody())
@@ -92,8 +91,8 @@ class EditUser extends Component {
           return parsed
         }).then(parsed => {
           if ( parsed.message ) {
-            this.setState({ message: parsed.message })
-            this.props.getUser();
+            this.setState({ message: parsed.message });
+            window.location=`/users/${this.state.current_user.id}`
           } else if ( parsed.errors ) {
             this.setState({ errors: parsed.errors })
           }
@@ -104,6 +103,17 @@ class EditUser extends Component {
         this.validateEmail(this.state.email);
       }
     }
+  }
+
+  componentDidMount(){
+    fetch('/api/v1/user.json', {
+      credentials: "include",
+      method: 'GET'
+    })
+    .then(response => response.json())
+    .then(responseData => {
+      this.setState({ current_user: responseData })
+    })
   }
 
   render() {

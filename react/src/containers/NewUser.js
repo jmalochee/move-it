@@ -141,7 +141,7 @@ class NewUser extends Component {
         if ( parsed.message ) {
         this.setState({ message: parsed.message })
         debugger;
-        window.location=`/users/1`
+        window.location=`/users/${this.state.current_user.id}`
         } else if ( parsed.errors ) {
           this.setState({ errors: parsed.errors })
         }

@@ -8,10 +8,9 @@ class UserShow extends Component {
     this.state = {
       current_user: {}
     }
-    this.getUser = this.getUser.bind(this);
   }
 
-  getUser(){
+  componentDidMount(){
     fetch('/api/v1/user.json', {
       credentials: "include",
       method: 'GET'
@@ -22,20 +21,12 @@ class UserShow extends Component {
     })
   }
 
-  componentDidMount(){
-    this.getUser()
-  }
-
   render() {
     let initAccount = () => {
       if (this.state.current_user.email) {
         return (this.props.children)
       } else {
-        return (
-          <EditUser
-            getUser={this.getUser}
-            current_user={this.state.current_user}
-          />)
+        return (<EditUser/>)
       }
     }
     return(
@@ -57,7 +48,7 @@ class UserShow extends Component {
                   {this.state.current_user.email}
                 </p>
                 <p>
-                  {this.state.current_user.phone}
+                  {this.state.current_user.phone_neat}
                 </p>
                 <div className="edit-button text-right">
                   <Link to="/user/edit">
