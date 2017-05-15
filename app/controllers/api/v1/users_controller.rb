@@ -5,32 +5,18 @@ class Api::V1::UsersController < ApplicationController
   def show
   end
 
-  def index # just an unused endpoint serving up :current_user
-  end
-
-  def create
+  def update
     body = request.body.read
     parsed = JSON.parse(body)
-    user = User.new(parsed)
-    if user.save
-      sign_in(user)
-      render json: { message: ["registration successful!"], email: user.email }
+    user = User.find(params[:id])
+    if user.update(parsed)
+      render json: { message: ["update successful!"], current_user: current_user }
     else
       return root_path
     end
   end
 
-  def sign_in(user)
-    session[:user_id] = user.id
+  def currentUser
+    render json: current_user
   end
-
-  def sign_out
-    session.delete(:user_id)
-    @current_user = nil
-  end
-
-  def user_signed_in?
-    !current_user.nil?
-  end
-
 end

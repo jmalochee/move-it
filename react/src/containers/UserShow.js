@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
+import EditUser from './EditUser'
 
 class UserShow extends Component {
   constructor(props) {
@@ -20,23 +22,47 @@ class UserShow extends Component {
   }
 
   render() {
+    let initAccount = () => {
+      if (this.state.current_user.email) {
+        return (this.props.children)
+      } else {
+        return (<EditUser/>)
+      }
+    }
     return(
       <div className="userShow">
         <div className="small-12 medium-4 large-3 columns">
           <div className="user-panel row large-up-1">
             <div className="column">
-              <div className="card">
+              <div className="card text-center">
                 <div className="card-section user-image">
                   <img src="https://i.imgur.com/oXghwZK.png"/>
                 </div>
-                {`${this.state.current_user.name}`}
-                {this.state.current_user.email}
+                <p>
+                  <strong>{`${this.state.current_user.name}`}</strong>
+                </p>
+                <p className="text-left">
+                  contact info:
+                </p>
+                <p>
+                  {this.state.current_user.email}
+                </p>
+                <p>
+                  {this.state.current_user.phone_neat}
+                </p>
+                <div className="edit-button text-right">
+                  <Link to="/user/edit">
+                    <div className="button large">
+                      <i className="fa fa-pencil" aria-hidden="true"></i>
+                    </div>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="small-12 medium-8 large-9 columns">
-          {this.props.children}
+          {initAccount()}
         </div>
       </div>
     )
