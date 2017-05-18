@@ -16,6 +16,8 @@ class User < ApplicationRecord
   has_many :moves
 
   def phone_neat
-    self.phone.gsub(/(\d{3})(\d{3})(\d{4})/, "(\\1)-\\2-\\3")
+    if self.phone
+      self.phone.gsub(/(\d{3})(\d{3})(\d{4})/, "(\\1)-\\2-\\3")
+    end
   end
 end
