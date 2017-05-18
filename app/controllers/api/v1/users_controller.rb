@@ -6,6 +6,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
+    binding.pry
     body = request.body.read
     parsed = JSON.parse(body)
     user = User.find(params[:id])
