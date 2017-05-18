@@ -39,7 +39,7 @@ class UserShow extends Component {
                   <img src="https://i.imgur.com/oXghwZK.png"/>
                 </div>
                 <p>
-                  <strong>{`${this.state.current_user.name}`}</strong>
+                  <strong>{this.state.current_user.name}</strong>
                 </p>
                 <p className="text-left">
                   contact info:

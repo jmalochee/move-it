@@ -60,13 +60,14 @@ class EditUser extends Component {
   }
 
   loadRequestBody(){
-    if (this.state.email === "") {
-      return {phone: this.state.phone}
-    } if (this.state.phone === "") {
-      return {email: this.state.email}
-    } else {
-      return { email: this.state.email, phone: this.state.phone }
+    let requestBody = {id: this.state.current_user.id}
+    if (this.state.email !== "") {
+      requestBody.email = this.state.email
     }
+    if (this.state.phone !== "") {
+      requestBody.phone = this.state.phone
+    }
+    return requestBody
   }
 
   handleFormSubmit(event) {
