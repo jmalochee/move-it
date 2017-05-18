@@ -11,7 +11,6 @@ class User < ApplicationRecord
   end
 
   validates :email, uniqueness: true, allow_nil: true
-  validates :phone, allow_nil: true
 
   has_many :moves
 
