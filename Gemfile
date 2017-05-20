@@ -12,6 +12,7 @@ gem 'active_model_serializers'
 gem "oauth2"
 gem "dotenv-rails"
 gem "omniauth-google-oauth2", "~> 0.2.1"
+gem "font-awesome-rails"
 
 group :development do
   gem 'listen', '~> 3.0.5'

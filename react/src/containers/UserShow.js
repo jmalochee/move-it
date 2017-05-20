@@ -29,6 +29,7 @@ class UserShow extends Component {
         return (<EditUser/>)
       }
     }
+
     return(
       <div className="userShow">
         <div className="small-12 medium-4 large-3 columns">
@@ -36,7 +37,7 @@ class UserShow extends Component {
             <div className="column">
               <div className="card text-center">
                 <div className="card-section user-image">
-                  <img src="https://i.imgur.com/oXghwZK.png"/>
+                  <img src={this.state.current_user.avatar}/>
                 </div>
                 <p>
                   <strong>{this.state.current_user.name}</strong>
