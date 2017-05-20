@@ -188,7 +188,9 @@ label {
   border-style: solid;
   border-color: black;
   background-color: $background-color;
-  box-shadow: 5px 5px 5px
+  box-shadow: 5px 5px 5px;
+  font-size: 1.5em;
+  padding: 15px;
 }
 
 .edit-button .button{
@@ -196,7 +198,9 @@ label {
   border-radius: 50%;
 }
 
-.card {
-  font-size: 1.5em;
-  padding: 15px;
+.avatar-select .card {
+  border-style: none;
+  background-color: white;
+  box-shadow: 0 0 0;
+  padding: 0px;
 }
