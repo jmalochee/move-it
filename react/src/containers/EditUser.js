@@ -154,7 +154,7 @@ class EditUser extends Component {
     return(
       <div className='registration row align-center'>
         <form className='callout small-12 medium-10 large-6 columns' onSubmit={this.handleFormSubmit}>
-          <h3> lets start by adding contact info </h3>
+          <h3> lets update your contact info </h3>
           {errorDiv}
           <div className="row small-up-1 medium-up-4 large-up-4 avatar-select">
             <div className="card column text-center">
