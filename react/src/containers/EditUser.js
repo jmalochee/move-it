@@ -105,6 +105,7 @@ class EditUser extends Component {
     return requestBody
   }
 
+
   handleFormSubmit(event) {
     event.preventDefault();
     if (this.state.email === "" && this.state.phone === "" && this.state.avatar === "") {
