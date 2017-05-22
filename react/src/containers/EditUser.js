@@ -20,6 +20,7 @@ class EditUser extends Component {
     this.handleAvatarFieldChange = this.handleAvatarFieldChange.bind(this);
     this.validatePhone = this.validatePhone.bind(this);
     this.validateEmail = this.validateEmail.bind(this);
+    this.validateUrl = this.validateUrl.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.loadRequestBody = this.loadRequestBody.bind(this);
   }
@@ -43,8 +44,8 @@ class EditUser extends Component {
     document.getElementById("custom-avatar").checked = true
   }
 
-  validatePhone() {
-    if ( this.state.phone.length !== 10 && this.state.phone !== "") {
+  validatePhone(phone) {
+    if ( phone.length !== 10 && phone !== "") {
       let newError = { phone: 'please enter a valid, ten digit phone number to continue' }
       this.setState({ errors: Object.assign(this.state.errors, newError) })
       return false
@@ -68,6 +69,23 @@ class EditUser extends Component {
     } else {
       let errorState = this.state.errors
       delete errorState.email
+      this.setState({ errors: errorState })
+      return true
+    }
+  }
+
+  validateUrl(url) {
+    if ( url !== '' && !url.match(/.*?\..*?\..*?/) ) {
+      let newError = { url: 'please provide a valid url' }
+      this.setState({ errors: Object.assign(this.state.errors, newError) })
+      return false
+    } else if ( url !== '' && !["jpg", "jpeg", "png"].includes(url.split('.').pop().split(/\#|\?/)[0].toLowerCase())) {
+      let newError = { url: 'url must specify a jpg or png image' }
+      this.setState({ errors: Object.assign(this.state.errors, newError) })
+      return false
+    } else {
+      let errorState = this.state.errors
+      delete errorState.url
       this.setState({ errors: errorState })
       return true
     }
@@ -98,7 +116,8 @@ class EditUser extends Component {
       this.setState({ errors: errorState })
       if (
         this.validatePhone(this.state.phone) &&
-        this.validateEmail(this.state.email)
+        this.validateEmail(this.state.email) &&
+        this.validateUrl(this.state.avatar)
       ) {
         fetch(`/api/v1/users/${this.state.current_user.id}.json`, {
           method: 'PATCH',
@@ -119,6 +138,7 @@ class EditUser extends Component {
         event.preventDefault();
         this.validatePhone(this.state.phone);
         this.validateEmail(this.state.email);
+        this.validateUrl(this.state.avatar);
       }
     }
   }
