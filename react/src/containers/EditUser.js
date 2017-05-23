@@ -105,7 +105,6 @@ class EditUser extends Component {
     return requestBody
   }
 
-
   handleFormSubmit(event) {
     event.preventDefault();
     if (this.state.email === "" && this.state.phone === "" && this.state.avatar === "") {
@@ -166,10 +165,10 @@ class EditUser extends Component {
     }
 
     let avatars = [
-      "http://i.imgur.com/GHU9Gbw.png",
-      "http://i.imgur.com/oXghwZK.png",
-      "http://i.imgur.com/G0XyrKI.png",
-      "http://i.imgur.com/0yLPYrE.png"
+      "https://i.imgur.com/GHU9Gbw.png",
+      "https://i.imgur.com/oXghwZK.png",
+      "https://i.imgur.com/G0XyrKI.png",
+      "https://i.imgur.com/0yLPYrE.png"
     ]
 
     return(
