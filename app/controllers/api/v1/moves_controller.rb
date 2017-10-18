@@ -18,6 +18,21 @@ class Api::V1::MovesController < ApplicationController
   end
 
   def show
-    render json: { moves: current_user.moves }
+    @move = Move.find(params[:id])
+    # render json: { moves: current_user.moves }
+    render json: @move
   end
+
+  def new
+    options = {
+        states: Move::US_STATES,
+        access: Move::ACCESS_OPTIONS,
+        truck_access: Move::TRUCK_ACCESS_OPTIONS
+      }
+
+    move = Move.new
+
+    render json: { move: move, options: options }
+  end
+
 end

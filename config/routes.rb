@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'static_pages#index'
+  # root 'static_pages#index'
 
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
@@ -11,8 +11,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [ :index, :show, :create, :update ]
         get '/user', to: 'users#currentUser'
-      resources :moves, only: [ :index, :show, :create ]
-        get '/move', to: 'moves#show'
+      resources :moves, only: [ :index, :show, :create, :new ]
     end
   end
 

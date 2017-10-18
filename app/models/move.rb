@@ -8,7 +8,7 @@ class Move < ApplicationRecord
   validates :orig_zip, presence: true,
     format: {
       with: /\d{5}-?(\d{4})?/,
-      message: "zip code must be valid"
+      message: "zip code must be a valid 4 or 9 digit us zip code"
     }
   validates :orig_floor, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :orig_distance, numericality: { only_integer: true, greater_than: 0 }
@@ -18,7 +18,7 @@ class Move < ApplicationRecord
   validates :dest_zip, presence: true,
     format: {
       with: /\d{5}-?(\d{4})?/,
-      message: "zip code must be valid"
+      message: "zip code must be a valid 4 or 9 digit us zip code"
     }
   validates :dest_floor, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :dest_distance, numericality: { only_integer: true, greater_than: 0 }
@@ -70,4 +70,73 @@ class Move < ApplicationRecord
       orig_addr_block
     end
   end
+
+  ACCESS_OPTIONS = {
+    "0" => "Ground Floor",
+    "1" => "Partial Staircase",
+    "2" => "Full Staircase",
+    "3" => "Multiple Staircases",
+    "4" => "Elevator"
+  }
+
+  TRUCK_ACCESS_OPTIONS = {
+    "0" => "Driveway",
+    "1" => "Street",
+    "2" => "Loading Dock",
+    "3" => "Parking Lot"
+  }
+
+  US_STATES = {
+    "AL" => "Alabama",
+    "AK" => "Alaska",
+    "AZ" => "Arizona",
+    "AR" => "Arkansas",
+    "CA" => "California",
+    "CO" => "Colorado",
+    "CT" => "Connecticut",
+    "DE" => "Delaware",
+    "DC" => "District Of Columbia",
+    "FL" => "Florida",
+    "GA" => "Georgia",
+    "HI" => "Hawaii",
+    "ID" => "Idaho",
+    "IL" => "Illinois",
+    "IN" => "Indiana",
+    "IA" => "Iowa",
+    "KS" => "Kansas",
+    "KY" => "Kentucky",
+    "LA" => "Louisiana",
+    "ME" => "Maine",
+    "MD" => "Maryland",
+    "MA" => "Massachusetts",
+    "MI" => "Michigan",
+    "MN" => "Minnesota",
+    "MS" => "Mississippi",
+    "MO" => "Missouri",
+    "MT" => "Montana",
+    "NE" => "Nebraska",
+    "NV" => "Nevada",
+    "NH" => "New Hampshire",
+    "NJ" => "New Jersey",
+    "NM" => "New Mexico",
+    "NY" => "New York",
+    "NC" => "North Carolina",
+    "ND" => "North Dakota",
+    "OH" => "Ohio",
+    "OK" => "Oklahoma",
+    "OR" => "Oregon",
+    "PA" => "Pennsylvania",
+    "RI" => "Rhode Island",
+    "SC" => "South Carolina",
+    "SD" => "South Dakota",
+    "TN" => "Tennessee",
+    "TX" => "Texas",
+    "UT" => "Utah",
+    "VT" => "Vermont",
+    "VA" => "Virginia",
+    "WA" => "Washington",
+    "WV" => "West Virginia",
+    "WI" => "Wisconsin",
+    "WY" => "Wyoming"
+  }
 end
