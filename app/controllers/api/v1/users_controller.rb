@@ -3,6 +3,7 @@ class Api::V1::UsersController < ApplicationController
   helper_method :current_user, :user_signed_in
 
   def show
+    
   end
 
   def update
