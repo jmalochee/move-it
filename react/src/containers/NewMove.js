@@ -36,10 +36,10 @@ class NewMove extends Component {
       dest_truck_access: "",
       dest_distance: "",
       access_options: [
-        {id: "0", name: "First Floor"}
+        {id: "0", name: "First Floor"},
         {id: "1", name: "Partial Staircase"},
         {id: "2", name: "Multiple Staircases"},
-        {id: "3", name: "Elevator"},
+        {id: "3", name: "Elevator"}
       ],
       truck_access_options: [
         {id: "0", name: "Loading Dock"},
