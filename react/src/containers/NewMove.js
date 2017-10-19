@@ -12,40 +12,8 @@ class NewMove extends Component {
       current_user: {},
       errors: {},
       message: {},
-      current_div: 0,
-      move_date: "",
-      comments: "",
-      orig_rooms: "",
-      orig_address: "",
-      orig_unit: "",
-      orig_city: "",
-      orig_state: "",
-      orig_zip: "",
-      orig_floor: "",
-      orig_access: "",
-      orig_truck_access: "",
-      orig_distance: "",
-      dest_rooms: "",
-      dest_address: "",
-      dest_unit: "",
-      dest_city: "",
-      dest_state: "",
-      dest_zip: "",
-      dest_floor: "",
-      dest_access: "",
-      dest_truck_access: "",
-      dest_distance: "",
-      access_options: [
-        {id: "0", name: "First Floor"}
-        {id: "1", name: "Partial Staircase"},
-        {id: "2", name: "Multiple Staircases"},
-        {id: "3", name: "Elevator"},
-      ],
-      truck_access_options: [
-        {id: "0", name: "Loading Dock"},
-        {id: "1", name: "Street"},
-        {id: "2", name: "Driveway"}
-      ]
+      move: {},
+      current_div: 0
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleMoveDate = this.handleMoveDate.bind(this);
@@ -85,7 +53,9 @@ class NewMove extends Component {
   }
 
   handleOrigAddress(event) {
-    this.setState({ orig_address: event.target.value })
+    let newMove = this.state.move
+    newMove.orig_address = event.target.value
+    this.forceUpdate()
   }
 
   handleOrigUnit(event) {
@@ -178,31 +148,7 @@ class NewMove extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    let requestBody = {
-      move_date: this.state.move_date,
-      orig_rooms: this.state.orig_rooms,
-      orig_address: this.state.orig_address,
-      orig_unit: this.state.orig_unit,
-      orig_city: this.state.orig_city,
-      orig_state: this.state.orig_state,
-      orig_zip: this.state.orig_zip,
-      orig_floor: this.state.orig_floor,
-      orig_access: this.state.orig_access,
-      orig_truck_access: this.state.orig_truck_access,
-      orig_distance: this.state.orig_distance,
-      dest_rooms: this.state.dest_rooms,
-      dest_address: this.state.dest_address,
-      dest_unit: this.state.dest_unit,
-      dest_city: this.state.dest_city,
-      dest_state: this.state.dest_state,
-      dest_zip: this.state.dest_zip,
-      dest_floor: this.state.dest_floor,
-      dest_access: this.state.dest_access,
-      dest_truck_access: this.state.dest_truck_access,
-      dest_distance: this.state.dest_distance,
-      comments: this.state.comments,
-      user_id: this.state.current_user.id
-    }
+    let requestBody = this.state.move;
     fetch('/api/v1/moves', {
       credentials: "same-origin",
       method: 'POST',
