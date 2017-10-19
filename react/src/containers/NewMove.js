@@ -36,15 +36,15 @@ class NewMove extends Component {
       dest_truck_access: "",
       dest_distance: "",
       access_options: [
-        {id: "1", name: "partial staircase"},
-        {id: "2", name: "multiple staircases"},
-        {id: "3", name: "elevator"},
-        {id: "4", name: "i can literally roll a ball from the street into the entrance"}
+        {id: "0", name: "First Floor"}
+        {id: "1", name: "Partial Staircase"},
+        {id: "2", name: "Multiple Staircases"},
+        {id: "3", name: "Elevator"},
       ],
       truck_access_options: [
-        {id: "1", name: "Loading Dock"},
-        {id: "2", name: "Street"},
-        {id: "3", name: "Driveway"}
+        {id: "0", name: "Loading Dock"},
+        {id: "1", name: "Street"},
+        {id: "2", name: "Driveway"}
       ]
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
