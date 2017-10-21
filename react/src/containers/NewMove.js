@@ -21,20 +21,24 @@ class NewMove extends Component {
       current_div: 0
     }
     this.handleFieldChange = this.handleFieldChange.bind(this);
+    this.fetchUser = this.fetchUser.bind(this);
+    this.fetchNewMove = this.fetchNewMove.bind(this);
     this.navNextHandler = this.navNextHandler.bind(this);
     this.navBackHandler = this.navBackHandler.bind(this);
     this.formDivHandler = this.formDivHandler.bind(this);
     this.toggleButtons = this.toggleButtons.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   handleFieldChange(event) {
+    let move = this.state.move
     move[event.target.name] = event.target.value;
     this.forceUpdate()
   }
 
   componentDidMount(){
-    fetchUser();
-    fetchNewMove();
+    this.fetchNewMove();
+    this.fetchUser();
   }
 
   fetchUser(){
@@ -57,28 +61,32 @@ class NewMove extends Component {
     .then(response => response.json())
     .then(responseData => {
       this.setState({ move: responseData.move });
+      console.log(responseData.move);
       this.setState({ options: responseData.options });
-      console.log(responseData);
+      console.log(responseData.options);
     })
   }
 
   handleFormSubmit(event) {
-    debugger;
     event.preventDefault();
-    let requestBody = this.state.move;
-    fetch('/api/v1/moves', {
+    this.state.move.user_id = this.state.current_user.id
+    debugger;
+    fetch('/api/v1/moves.json', {
       credentials: "same-origin",
       method: 'POST',
-      body: JSON.stringify(requestBody)
+      body: JSON.stringify(this.state.move)
     }).then(response => {
       let parsed = response.json()
       return parsed
     }).then(parsed => {
       if ( parsed.message ) {
+        console.log(parsed);
         this.setState({ message: parsed.message });
-        window.location=`/moves/${parsed.move.id}`;
+        window.location=`/moves/${parsed.id}`;
+        console.log(parsed.message);
       } else if ( parsed.errors ) {
-        this.setState({ errors: parsed.errors })
+        this.setState({ errors: parsed.errors });
+        console.log(parsed.errors);
       }
     })
   }
