@@ -14,7 +14,7 @@ let routes = (
       <Route path="/users/new" component={NewUser}/>
       <Route path="/users/:id" component={UserShow}>
         <Route path="/moves/:id" component={MoveShow}/>
-        <Route path="/moves/new" component={NewMove}/>
+        <Route path="/move/new" component={NewMove}/>
         <Route path="/user/edit" component={EditUser}/>
       </Route>
     </Route>
