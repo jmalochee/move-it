@@ -24,11 +24,17 @@ class Api::V1::MovesController < ApplicationController
   end
 
   def new
+    def transform (options)
+      array = []
+      options.each{|k,v| array << {id:k, name:v} }
+      array
+    end
+
     options = {
-        states: Move::US_STATES,
-        access: Move::ACCESS_OPTIONS,
-        truck_access: Move::TRUCK_ACCESS_OPTIONS
-      }
+        states: transform(Move::US_STATES),
+        access: transform(Move::ACCESS_OPTIONS),
+        truck_access: transform(Move::TRUCK_ACCESS_OPTIONS)
+    }
 
     move = Move.new
 

@@ -14,9 +14,9 @@ let routes = (
       <Route path="/register" component={Register}/>
       <Route path="/users/new" component={NewUser}/>
       <Route path="/users/:id" component={UserShow}>
-        <IndexRoute component={MoveShow}/>
-        <Route path="/moves/new" component={NewMove}/>
-        <Route path="/user/edit" component={EditUser}/>
+      <Route path="/moves/:id" component={MoveShow}/>
+      <Route path="/moves/new" component={NewMove}/>
+      <Route path="/user/edit" component={EditUser}/>
       </Route>
       <Route path="/splash" component={Splash}/>
     </Route>

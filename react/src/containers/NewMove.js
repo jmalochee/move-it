@@ -12,210 +12,81 @@ class NewMove extends Component {
       current_user: {},
       errors: {},
       message: {},
-      current_div: 0,
-      move_date: "",
-      comments: "",
-      orig_rooms: "",
-      orig_address: "",
-      orig_unit: "",
-      orig_city: "",
-      orig_state: "",
-      orig_zip: "",
-      orig_floor: "",
-      orig_access: "",
-      orig_truck_access: "",
-      orig_distance: "",
-      dest_rooms: "",
-      dest_address: "",
-      dest_unit: "",
-      dest_city: "",
-      dest_state: "",
-      dest_zip: "",
-      dest_floor: "",
-      dest_access: "",
-      dest_truck_access: "",
-      dest_distance: "",
-      access_options: [
-        {id: "0", name: "First Floor"},
-        {id: "1", name: "Partial Staircase"},
-        {id: "2", name: "Multiple Staircases"},
-        {id: "3", name: "Elevator"}
-      ],
-      truck_access_options: [
-        {id: "0", name: "Loading Dock"},
-        {id: "1", name: "Street"},
-        {id: "2", name: "Driveway"}
-      ]
+      move: {},
+      options: {
+        states: [],
+        access: [],
+        truck_access: []
+      },
+      current_div: 0
     }
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleMoveDate = this.handleMoveDate.bind(this);
-    this.handleOrigRooms = this.handleOrigRooms.bind(this);
-    this.handleOrigAddress = this.handleOrigAddress.bind(this);
-    this.handleOrigUnit = this.handleOrigUnit.bind(this);
-    this.handleOrigCity = this.handleOrigCity.bind(this);
-    this.handleOrigState = this.handleOrigState.bind(this);
-    this.handleOrigZip = this.handleOrigZip.bind(this);
-    this.handleOrigFloor = this.handleOrigFloor.bind(this);
-    this.handleOrigTruck = this.handleOrigTruck.bind(this);
-    this.handleOrigAccess = this.handleOrigAccess.bind(this);
-    this.handleOrigDistance = this.handleOrigDistance.bind(this);
-    this.handleDestRooms = this.handleDestRooms.bind(this);
-    this.handleDestAddress = this.handleDestAddress.bind(this);
-    this.handleDestUnit = this.handleDestUnit.bind(this);
-    this.handleDestCity = this.handleDestCity.bind(this);
-    this.handleDestState = this.handleDestState.bind(this);
-    this.handleDestZip = this.handleDestZip.bind(this);
-    this.handleDestFloor = this.handleDestFloor.bind(this);
-    this.handleDestTruck = this.handleDestTruck.bind(this);
-    this.handleDestAccess = this.handleDestAccess.bind(this);
-    this.handleDestDistance = this.handleDestDistance.bind(this);
-    this.handleComments = this.handleComments.bind(this);
+    this.handleFieldChange = this.handleFieldChange.bind(this);
+    this.fetchUser = this.fetchUser.bind(this);
+    this.fetchNewMove = this.fetchNewMove.bind(this);
     this.navNextHandler = this.navNextHandler.bind(this);
     this.navBackHandler = this.navBackHandler.bind(this);
     this.formDivHandler = this.formDivHandler.bind(this);
     this.toggleButtons = this.toggleButtons.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
-  handleMoveDate(event) {
-    this.setState({ move_date: event.target.value })
-  }
-
-  handleOrigRooms(event) {
-    this.setState({ orig_rooms: event.target.value })
-  }
-
-  handleOrigAddress(event) {
-    this.setState({ orig_address: event.target.value })
-  }
-
-  handleOrigUnit(event) {
-    this.setState({ orig_unit: event.target.value })
-  }
-
-  handleOrigCity(event) {
-    this.setState({ orig_city: event.target.value })
-  }
-
-  handleOrigState(event) {
-    this.setState({ orig_state: event.target.value })
-  }
-
-  handleOrigZip(event) {
-    this.setState({ orig_zip: event.target.value })
-  }
-
-  handleOrigFloor(event) {
-    this.setState({ orig_floor: event.target.value })
-  }
-
-  handleOrigTruck(event) {
-    this.setState({ orig_truck_access: event.target.value })
-  }
-
-  handleOrigAccess(event) {
-    this.setState({ orig_access: event.target.value })
-  }
-
-  handleOrigDistance(event) {
-    this.setState({ orig_distance: event.target.value })
-  }
-
-  handleDestRooms(event) {
-    this.setState({ dest_rooms: event.target.value })
-  }
-
-  handleDestAddress(event) {
-    this.setState({ dest_address: event.target.value })
-  }
-
-  handleDestUnit(event) {
-    this.setState({ dest_unit: event.target.value })
-  }
-
-  handleDestCity(event) {
-    this.setState({ dest_city: event.target.value })
-  }
-
-  handleDestState(event) {
-    this.setState({ dest_state: event.target.value })
-  }
-
-  handleDestZip(event) {
-    this.setState({ dest_zip: event.target.value })
-  }
-
-  handleDestFloor(event) {
-    this.setState({ dest_floor: event.target.value })
-  }
-
-  handleDestTruck(event) {
-    this.setState({ dest_truck_access: event.target.value })
-  }
-
-  handleDestAccess(event) {
-    this.setState({ dest_access: event.target.value })
-  }
-
-  handleDestDistance(event) {
-    this.setState({ dest_distance: event.target.value })
-  }
-
-  handleComments(event) {
-    this.setState({ comments: event.target.value })
+  handleFieldChange(event) {
+    let move = this.state.move
+    move[event.target.name] = event.target.value;
+    this.forceUpdate()
   }
 
   componentDidMount(){
+    this.fetchNewMove();
+    this.fetchUser();
+  }
+
+  fetchUser(){
     fetch('/api/v1/user.json', {
       credentials: "include",
       method: 'GET'
     })
     .then(response => response.json())
     .then(responseData => {
-      this.setState({ current_user: responseData })
-      console.log(responseData)
+      this.setState({ current_user: responseData });
+      console.log(responseData);
+    })
+  }
+
+  fetchNewMove(){
+    fetch('/api/v1/moves/new.json', {
+      credentials: "include",
+      method: 'GET'
+    })
+    .then(response => response.json())
+    .then(responseData => {
+      this.setState({ move: responseData.move });
+      console.log(responseData.move);
+      this.setState({ options: responseData.options });
+      console.log(responseData.options);
     })
   }
 
   handleFormSubmit(event) {
     event.preventDefault();
-    let requestBody = {
-      move_date: this.state.move_date,
-      orig_rooms: this.state.orig_rooms,
-      orig_address: this.state.orig_address,
-      orig_unit: this.state.orig_unit,
-      orig_city: this.state.orig_city,
-      orig_state: this.state.orig_state,
-      orig_zip: this.state.orig_zip,
-      orig_floor: this.state.orig_floor,
-      orig_access: this.state.orig_access,
-      orig_truck_access: this.state.orig_truck_access,
-      orig_distance: this.state.orig_distance,
-      dest_rooms: this.state.dest_rooms,
-      dest_address: this.state.dest_address,
-      dest_unit: this.state.dest_unit,
-      dest_city: this.state.dest_city,
-      dest_state: this.state.dest_state,
-      dest_zip: this.state.dest_zip,
-      dest_floor: this.state.dest_floor,
-      dest_access: this.state.dest_access,
-      dest_truck_access: this.state.dest_truck_access,
-      dest_distance: this.state.dest_distance,
-      comments: this.state.comments,
-      user_id: this.state.current_user.id
-    }
-    fetch('/api/v1/moves', {
+    this.state.move.user_id = this.state.current_user.id
+    debugger;
+    fetch('/api/v1/moves.json', {
       credentials: "same-origin",
       method: 'POST',
-      body: JSON.stringify(requestBody)
+      body: JSON.stringify(this.state.move)
     }).then(response => {
       let parsed = response.json()
       return parsed
     }).then(parsed => {
       if ( parsed.message ) {
+        console.log(parsed);
         this.setState({ message: parsed.message });
-        window.location=`/moves/${parsed.move.id}`;
+        window.location=`/moves/${parsed.id}`;
+        console.log(parsed.message);
       } else if ( parsed.errors ) {
-        this.setState({ errors: parsed.errors })
+        this.setState({ errors: parsed.errors });
+        console.log(parsed.errors);
       }
     })
   }
@@ -287,62 +158,62 @@ class NewMove extends Component {
           <div id="origin-addr">
             where are you moving from?
             <TextField
-              content={this.state.orig_address}
+              content={this.state.move.orig_address}
               label='street address'
               name='orig_address'
-              handlerFunction={this.handleOrigAddress}
+              handlerFunction={this.handleFieldChange}
               placeholder='123 easy street'
             />
             <TextField
-              content={this.state.orig_unit}
+              content={this.state.move.orig_unit}
               label='unit/apt/ste'
               name='orig_unit'
-              handlerFunction={this.handleOrigUnit}
+              handlerFunction={this.handleFieldChange}
               placeholder='1'
             />
             <TextField
-              content={this.state.orig_city}
+              content={this.state.move.orig_city}
               label='city'
               name='orig_city'
-              handlerFunction={this.handleOrigCity}
+              handlerFunction={this.handleFieldChange}
               placeholder='city'
             />
             <TextField
-              content={this.state.orig_state}
+              content={this.state.move.orig_state}
               label='state'
               name='orig_state'
-              handlerFunction={this.handleOrigState}
+              handlerFunction={this.handleFieldChange}
               placeholder='state'
             />
             <TextField
-              content={this.state.orig_zip}
+              content={this.state.move.orig_zip}
               label='zip code'
               name='orig_zip'
-              handlerFunction={this.handleOrigZip}
+              handlerFunction={this.handleFieldChange}
               placeholder='zip'
             />
           </div>
           <div id="origin-info">
             <NumberField
-              content={this.state.orig_rooms}
+              content={this.state.move.orig_rooms}
               label='how many rooms are there at this address?'
               name='orig_rooms'
-              handlerFunction={this.handleOrigRooms}
+              handlerFunction={this.handleFieldChange}
               placeholder='#'
               />
             <NumberField
-              content={this.state.orig_floor}
+              content={this.state.move.orig_floor}
               label='what floor are you moving from?'
               name='orig_floor'
-              handlerFunction={this.handleOrigFloor}
+              handlerFunction={this.handleFieldChange}
               placeholder='#'
             />
             <SelectField
               label='where can the movers plan on parking the truck?'
               name='orig_truck_access'
-              handlerFunction={this.handleOrigTruck}
-              options={this.state.truck_access_options}
-              selectedOption={this.state.orig_truck_access}
+              handlerFunction={this.handleFieldChange}
+              options={this.state.options.truck_access}
+              selectedOption={this.state.move.orig_truck_access}
             />
             <p className="help-text" id="truckHelpText">
               be sure to acquire any necessary parking permits or reservations in advance!
@@ -350,15 +221,15 @@ class NewMove extends Component {
             <SelectField
               label='how do you get from the truck to your floor?'
               name='orig_access'
-              handlerFunction={this.handleOrigAccess}
-              options={this.state.access_options}
-              selectedOption={this.state.orig_access}
+              handlerFunction={this.handleFieldChange}
+              options={this.state.options.access}
+              selectedOption={this.state.move.orig_access}
               />
               <NumberField
-                content={this.state.orig_distance}
+                content={this.state.move.orig_distance}
                 label='about how far will the trip be from the truck to your door?'
                 name='orig_distance'
-                handlerFunction={this.handleOrigDistance}
+                handlerFunction={this.handleFieldChange}
                 placeholder='#'
               />
             <p className="help-text" id="distanceHelpText">
@@ -368,62 +239,62 @@ class NewMove extends Component {
           <div id="destination-addr">
             where are you moving to?
             <TextField
-              content={this.state.dest_address}
+              content={this.state.move.dest_address}
               label='street address'
               name='dest_address'
-              handlerFunction={this.handleDestAddress}
+              handlerFunction={this.handleFieldChange}
               placeholder='123 easy street'
             />
             <TextField
-              content={this.state.dest_unit}
+              content={this.state.move.dest_unit}
               label='unit, apartnemt, or suite number'
               name='dest_unit'
-              handlerFunction={this.handleDestUnit}
+              handlerFunction={this.handleFieldChange}
               placeholder='1'
             />
             <TextField
-              content={this.state.dest_city}
+              content={this.state.move.dest_city}
               label='city'
               name='dest_city'
-              handlerFunction={this.handleDestCity}
+              handlerFunction={this.handleFieldChange}
               placeholder='city'
             />
             <TextField
-              content={this.state.dest_state}
+              content={this.state.move.dest_state}
               label='state'
               name='dest_state'
-              handlerFunction={this.handleDestState}
+              handlerFunction={this.handleFieldChange}
               placeholder='state'
             />
             <TextField
-              content={this.state.dest_zip}
+              content={this.state.move.dest_zip}
               label='zip code'
               name='dest_zip'
-              handlerFunction={this.handleDestZip}
+              handlerFunction={this.handleFieldChange}
               placeholder='zip'
             />
           </div>
           <div id="destination-info">
             <NumberField
-              content={this.state.dest_rooms}
+              content={this.state.move.dest_rooms}
               label='how many rooms are there at this address?'
               name='dest_rooms'
-              handlerFunction={this.handleDestRooms}
+              handlerFunction={this.handleFieldChange}
               placeholder='#'
               />
             <NumberField
-              content={this.state.dest_floor}
+              content={this.state.move.dest_floor}
               label='what floor are you moving to?'
               name='dest_floor'
-              handlerFunction={this.handleDestFloor}
+              handlerFunction={this.handleFieldChange}
               placeholder='#'
             />
             <SelectField
               label='where can the movers plan on parking the truck?'
               name='dest_truck_access'
-              handlerFunction={this.handleDestTruck}
-              options={this.state.truck_access_options}
-              selectedOption={this.state.dest_truck_access}
+              handlerFunction={this.handleFieldChange}
+              options={this.state.options.truck_access}
+              selectedOption={this.state.move.dest_truck_access}
             />
             <p className="help-text" id="truckHelpText">
               be sure to acquire any necessary parking permits or reservations in advance!
@@ -431,15 +302,15 @@ class NewMove extends Component {
             <SelectField
               label='how do you get from the truck to your floor?'
               name='dest_access'
-              handlerFunction={this.handleDestAccess}
-              options={this.state.access_options}
-              selectedOption={this.state.dest_access}
+              handlerFunction={this.handleFieldChange}
+              options={this.state.options.access}
+              selectedOption={this.state.move.dest_access}
             />
             <NumberField
-              content={this.state.dest_distance}
+              content={this.state.move.dest_distance}
               label='about how far in feet will the trip be from the truck to your door?'
               name='dest_distance'
-              handlerFunction={this.handleDestDistance}
+              handlerFunction={this.handleFieldChange}
               placeholder='#'
             />
             <p className="help-text" id="distanceHelpText">
@@ -448,18 +319,18 @@ class NewMove extends Component {
           </div>
           <div id='last-step'>
             <DateField
-              content={this.state.move_date}
+              content={this.state.move.move_date}
               label='when are you planning to moving?'
               name='move_date'
-              handlerFunction={this.handleMoveDate}
+              handlerFunction={this.handleFieldChange}
               placeholder='--/--/----'
               size='30'
               />
             <TextAreaField
-              content={this.state.comments}
+              content={this.state.move.comments}
               label='please provide any additional comments or clarification here'
               name='comments'
-              handlerFunction={this.handleComments}
+              handlerFunction={this.handleFieldChange}
               placeholder='this is a great place to let movers know about tight corners accessing driveways, narrow staircases, whether you needed a hoist to get large items into the house, or other miscelaneous details or instructions'
               rows='8'
               form='newmove'
