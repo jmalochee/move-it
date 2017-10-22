@@ -31,7 +31,7 @@ class MoveShow extends Component {
   }
 
   getMove() {
-    fetch('/api/v1/move.json', {
+    fetch(`/api/v1/moves/${this.props.params.id}.json`, {
       credentials: "include",
       method: 'GET'
     })
@@ -43,7 +43,7 @@ class MoveShow extends Component {
 
 
   render() {
-    let moveDisplay = () => {
+    let currentMove = () => {
       if (current_move) {
         return(
           <div className="row moveShow">
@@ -67,7 +67,7 @@ class MoveShow extends Component {
     }
     return(
       <div>
-        {moveDisplay}
+        {currentMove}
       </div>
     )
   }
