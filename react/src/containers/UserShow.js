@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import EditUser from './EditUser'
+import EditUser from './EditUser';
+import MoveList from './MoveList';
 
 class UserShow extends Component {
   constructor(props) {
@@ -22,11 +23,17 @@ class UserShow extends Component {
   }
 
   render() {
-    let initAccount = () => {
+    let hasContact = () => {
       if (this.state.current_user.email) {
         return (this.props.children)
       } else {
         return (<EditUser/>)
+      }
+    }
+
+    let hasMove = () => {
+      if (!this.state.current_user.moves[0]) {
+        return (<MoveList/>)
       }
     }
 
@@ -35,7 +42,7 @@ class UserShow extends Component {
         <div className="small-12 medium-4 large-3 columns">
           <div className="user-panel row large-up-1">
             <div className="column">
-              <div className="card text-center">
+              <div className="card text-center" id="user-info">
                 <div className="card-section user-image">
                   <img src={this.state.current_user.avatar}/>
                 </div>
@@ -58,12 +65,14 @@ class UserShow extends Component {
                     </div>
                   </Link>
                 </div>
+                <MoveList/>
               </div>
             </div>
           </div>
         </div>
         <div className="small-12 medium-8 large-9 columns">
-          {initAccount()}
+          {hasContact()}
+
         </div>
       </div>
     )

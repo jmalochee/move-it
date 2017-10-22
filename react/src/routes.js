@@ -6,7 +6,6 @@ import NewUser from './containers/NewUser';
 import UserShow from './containers/UserShow';
 import NewMove from './containers/NewMove';
 import MoveShow from './containers/MoveShow';
-import Splash from './components/Splash';
 import EditUser from './containers/EditUser'
 
 let routes = (
@@ -14,11 +13,10 @@ let routes = (
       <Route path="/register" component={Register}/>
       <Route path="/users/new" component={NewUser}/>
       <Route path="/users/:id" component={UserShow}>
-      <Route path="/moves/:id" component={MoveShow}/>
-      <Route path="/moves/new" component={NewMove}/>
-      <Route path="/user/edit" component={EditUser}/>
+        <Route path="/moves/:id" component={MoveShow}/>
+        <Route path="/moves/new" component={NewMove}/>
+        <Route path="/user/edit" component={EditUser}/>
       </Route>
-      <Route path="/splash" component={Splash}/>
     </Route>
 );
 
