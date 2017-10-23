@@ -18,9 +18,10 @@ class Api::V1::MovesController < ApplicationController
   end
 
   def show
-    @move = Move.find(params[:id])
-    # render json: { moves: current_user.moves }
-    render json: @move
+    if current_user.moves.find_by(id: params[:id])
+      @move = Move.find(params[:id])
+      render json: @move
+    end
   end
 
   def new

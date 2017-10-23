@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import EditUser from './EditUser';
-import MoveList from './MoveList';
+import MoveList from '../components/MoveList';
 
 class UserShow extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      current_user: {}
+      current_user: {
+        moves: []
+      }
     }
   }
 
@@ -23,22 +25,8 @@ class UserShow extends Component {
   }
 
   render() {
-    let hasContact = () => {
-      if (this.state.current_user.email) {
-        return (this.props.children)
-      } else {
-        return (<EditUser/>)
-      }
-    }
-
-    let hasMove = () => {
-      if (!this.state.current_user.moves[0]) {
-        return (<MoveList/>)
-      }
-    }
-
     return(
-      <div className="userShow">
+      <div className="userShow row">
         <div className="small-12 medium-4 large-3 columns">
           <div className="user-panel row large-up-1">
             <div className="column">
@@ -65,14 +53,17 @@ class UserShow extends Component {
                     </div>
                   </Link>
                 </div>
-                <MoveList/>
+                <div className="card-section">
+                  <MoveList
+                    moves={this.state.current_user.moves}
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="small-12 medium-8 large-9 columns">
-          {hasContact()}
-
+          {this.props.children}
         </div>
       </div>
     )

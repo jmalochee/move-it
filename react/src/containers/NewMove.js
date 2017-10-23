@@ -148,7 +148,7 @@ class NewMove extends Component {
     }
 
     return(
-      <div className='registration row align-center'>
+      <div className='row align-center'>
         <form id='newmove' className='callout small-12 medium-8 large-10 columns' onSubmit={this.handleFormSubmit}>
           <h3> lets get started! </h3>
           <div className="progress" role="progressbar">

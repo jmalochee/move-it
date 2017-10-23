@@ -8,7 +8,41 @@ class MoveShow extends Component {
     super(props)
     this.state = {
       current_user: {},
-      current_move: null
+      current_move: {
+        "move_date": null,
+        "comments": null,
+        "origin": {
+          "address": {
+            "street": null,
+            "unit": null,
+            "city": null,
+            "state": null,
+            "zip": null
+          },
+          "floor": null,
+          "rooms": null,
+          "access": null,
+          "truck_access": null,
+          "distance": null
+        },
+        "destination": {
+          "address": {
+            "street": null,
+            "unit": null,
+            "city": null,
+            "state": null,
+            "zip": null
+          },
+          "floor": null,
+          "rooms": null,
+          "access": null,
+          "truck_access": null,
+          "distance": null
+        },
+        "user_id": null,
+        "created_at": null,
+        "updated_at": null
+      }
     }
     this.getMove = this.getMove.bind(this);
     this.getUser = this.getUser.bind(this);
@@ -37,37 +71,24 @@ class MoveShow extends Component {
     })
     .then(response => response.json())
     .then(responseData => {
+      console.log(responseData)
       this.setState({ current_move: responseData })
     })
   }
 
-
   render() {
-    let currentMove = () => {
-      if (current_move) {
-        return(
-          <div className="row moveShow">
-            <div className="small-12 medium-10 large-10 columns">
-              <MoveDetails
-                move={this.state.current_move}
-                />
-            </div>
-            <div className="small-12 medium-2 large-2 columns">
-              <div className="inventory">
-                <Inventory
-
-                />
-              </div>
-            </div>
-          </div>
-        )
-      } else {
-        return( <MovePrompt/> )
-      }
-    }
     return(
-      <div>
-        {currentMove}
+      <div className="moveShow small-12 medium-10 large-10 columns">
+        <div className="row">
+          <MoveDetails
+            move={this.state.current_move}
+            />
+        </div>
+        <div className="small-10 medium-2 large-2 columns">
+          <div className="inventory">
+
+          </div>
+        </div>
       </div>
     )
   }

@@ -27,7 +27,7 @@ class Move < ApplicationRecord
 
   def orig_addr
     {
-      address: dest_address,
+      street: dest_address,
       unit: dest_unit,
       city: dest_city,
       state: dest_state,
@@ -37,7 +37,7 @@ class Move < ApplicationRecord
 
   def dest_addr
     {
-      address: orig_address,
+      street: orig_address,
       unit: orig_unit,
       city: orig_city,
       state: orig_state,
