@@ -82,7 +82,7 @@ class NewMove extends Component {
       if ( parsed.message ) {
         console.log(parsed);
         this.setState({ message: parsed.message });
-        window.location=`/moves/${parsed.id}`;
+        window.location=`/moves/${parsed.move.id}`;
         console.log(parsed.message);
       } else if ( parsed.errors ) {
         this.setState({ errors: parsed.errors });
@@ -138,6 +138,7 @@ class NewMove extends Component {
   }
 
   render() {
+    debugger
     let errorDiv;
     let errorItems;
     if (Object.keys(this.state.errors).length > 0) {
@@ -178,12 +179,12 @@ class NewMove extends Component {
               handlerFunction={this.handleFieldChange}
               placeholder='city'
             />
-            <TextField
-              content={this.state.move.orig_state}
+            <SelectField
               label='state'
               name='orig_state'
               handlerFunction={this.handleFieldChange}
-              placeholder='state'
+              options={this.state.options.states}
+              selectedOption={this.state.move.orig_state}
             />
             <TextField
               content={this.state.move.orig_zip}
@@ -259,12 +260,12 @@ class NewMove extends Component {
               handlerFunction={this.handleFieldChange}
               placeholder='city'
             />
-            <TextField
-              content={this.state.move.dest_state}
+            <SelectField
               label='state'
               name='dest_state'
               handlerFunction={this.handleFieldChange}
-              placeholder='state'
+              options={this.state.options.states}
+              selectedOption={this.state.move.dest_state}
             />
             <TextField
               content={this.state.move.dest_zip}
