@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import EditUser from './EditUser';
 import MoveList from '../components/MoveList';
 
-class UserShow extends Component {
+class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -26,7 +26,7 @@ class UserShow extends Component {
 
   render() {
     return(
-      <div className="userShow row">
+      <div className="app row">
         <div className="small-12 medium-4 large-3 columns">
           <div className="user-panel row large-up-1">
             <div className="column">
@@ -69,4 +69,4 @@ class UserShow extends Component {
     )
   }
 }
-export default UserShow;
+export default App;
