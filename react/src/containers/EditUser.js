@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import TextField from '../components/TextField'
-import PasswordField from '../components/PasswordField'
+import PropTypes from 'prop-types';
+import TextField from '../components/TextField';
+import PasswordField from '../components/PasswordField';
 
 class EditUser extends Component {
   constructor(props) {
@@ -23,6 +24,11 @@ class EditUser extends Component {
     this.validateUrl = this.validateUrl.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.loadRequestBody = this.loadRequestBody.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
+  }
+
+  handleCancel() {
+    this.context.router.goBack();
   }
 
   handlePhoneChange(event) {
@@ -216,13 +222,23 @@ class EditUser extends Component {
             name='email'
             handlerFunction={this.handleEmailChange}
           />
-          <div className='column text-right'>
-            <input type='submit' className='button submit' value='submit' id='editusersubmit'/>
+          <div className="edit-user-buttons row">
+            <div className='column align-left'>
+              <input type='button' className='button cancel' value='cancel' id='editusercancel' onClick={this.handleCancel}/>
+            </div>
+            <div className='column text-right'>
+              <input type='submit' className='button submit' value='submit' id='editusersubmit'/>
+            </div>
           </div>
         </form>
       </div>
     )
   }
 }
+
+EditUser.contextTypes = {
+  router: PropTypes.object
+};
+
 
 export default EditUser;

@@ -19,11 +19,13 @@ const MoveDetails = props => {
         </div>
         <div className="small-12 medium-6 large-6 columns address-details">
           <table>
-            {row("floor", i.floor)}
-            {row("rooms", i.rooms)}
-            {row("home access", i.access)}
-            {row("truck access", i.truck_access)}
-            {row("walking distance", i.distance)}
+            <tbody>
+              {row("floor", i.floor)}
+              {row("rooms", i.rooms)}
+              {row("home access", i.access)}
+              {row("truck access", i.truck_access)}
+              {row("walking distance", i.distance)}
+            </tbody>
           </table>
         </div>
       </div>
