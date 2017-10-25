@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MoveDetails = props => {
-  let detail = (name, value) => {
+  let row = (name, value) => {
     return( <tr><td><strong>{name}:</strong></td><td>{value}</td></tr>)
   }
 
@@ -19,11 +19,11 @@ const MoveDetails = props => {
         </div>
         <div className="small-12 medium-6 large-6 columns address-details">
           <table>
-            {detail("floor", i.floor)}
-            {detail("rooms", i.rooms)}
-            {detail("home access", i.access)}
-            {detail("truck access", i.truck_access)}
-            {detail("walking distance", i.distance)}
+            {row("floor", i.floor)}
+            {row("rooms", i.rooms)}
+            {row("home access", i.access)}
+            {row("truck access", i.truck_access)}
+            {row("walking distance", i.distance)}
           </table>
         </div>
       </div>
