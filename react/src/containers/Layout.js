@@ -5,17 +5,6 @@ class Layout extends Component {
     super(props);
   }
 
-  componentDidMount(){
-    fetch('/api/v1/user', {
-      credentials: "include",
-      method: 'GET'
-    })
-    .then(response => response.json())
-    .then(responseData => {
-      this.setState({ current_user: responseData })
-    })
-  }
-
   render() {
     return(
       <div className="background">

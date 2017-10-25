@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Inventory from '../components/Inventory';
-import MoveDetails from '../containers/MoveDetails';
+import MoveDetails from '../components/MoveDetails';
 import MovePrompt from '../components/MovePrompt';
 
 class MoveShow extends Component {
@@ -71,7 +71,6 @@ class MoveShow extends Component {
     })
     .then(response => response.json())
     .then(responseData => {
-      console.log(responseData)
       this.setState({ current_move: responseData })
     })
   }

@@ -6,7 +6,6 @@ class Api::V1::MovesController < ApplicationController
     parsed = JSON.parse(body)
     move = Move.new(parsed)
     if move.save
-
       render json: { message: ["move created successfully!"], move_id: move.id }
     else
       render json: { errors: report(move.errors) }

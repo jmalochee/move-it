@@ -1,9 +1,11 @@
- import React, { Component } from 'react';
-import TextField from '../components/TextField'
-import TextAreaField from '../components/TextAreaField'
-import NumberField from '../components/NumberField'
-import SelectField from '../components/SelectField'
-import DateField from '../components/DateField'
+import React, { Component } from 'react';
+import { Route, Redirect } from 'react-router';
+import PropTypes from 'prop-types';
+import TextField from '../components/TextField';
+import TextAreaField from '../components/TextAreaField';
+import NumberField from '../components/NumberField';
+import SelectField from '../components/SelectField';
+import DateField from '../components/DateField';
 
 class NewMove extends Component {
   constructor(props) {
@@ -28,12 +30,17 @@ class NewMove extends Component {
     this.formDivHandler = this.formDivHandler.bind(this);
     this.toggleButtons = this.toggleButtons.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.toMoveShow = this.toMoveShow.bind(this);
   }
 
   handleFieldChange(event) {
     let move = this.state.move
     move[event.target.name] = event.target.value;
     this.forceUpdate()
+  }
+
+  toMoveShow(id) {
+    this.context.router.push(`/app/moves/${id}`);
   }
 
   componentDidMount(){
@@ -49,7 +56,6 @@ class NewMove extends Component {
     .then(response => response.json())
     .then(responseData => {
       this.setState({ current_user: responseData });
-      console.log(responseData);
     })
   }
 
@@ -61,32 +67,28 @@ class NewMove extends Component {
     .then(response => response.json())
     .then(responseData => {
       this.setState({ move: responseData.move });
-      console.log(responseData.move);
       this.setState({ options: responseData.options });
-      console.log(responseData.options);
     })
   }
 
   handleFormSubmit(event) {
     event.preventDefault();
     this.state.move.user_id = this.state.current_user.id
-    debugger;
     fetch('/api/v1/moves.json', {
       credentials: "same-origin",
       method: 'POST',
       body: JSON.stringify(this.state.move)
-    }).then(response => {
+    })
+    .then(response => {
       let parsed = response.json()
       return parsed
-    }).then(parsed => {
+    })
+    .then(parsed => {
       if ( parsed.message ) {
-        console.log(parsed);
         this.setState({ message: parsed.message });
-        window.location=`/moves/${parsed.move.id}`;
-        console.log(parsed.message);
+        this.toMoveShow(parsed.move_id);
       } else if ( parsed.errors ) {
         this.setState({ errors: parsed.errors });
-        console.log(parsed.errors);
       }
     })
   }
@@ -138,7 +140,6 @@ class NewMove extends Component {
   }
 
   render() {
-    debugger
     let errorDiv;
     let errorItems;
     if (Object.keys(this.state.errors).length > 0) {
@@ -351,5 +352,9 @@ class NewMove extends Component {
     )
   }
 }
+
+NewMove.contextTypes = {
+  router: PropTypes.object
+};
 
 export default NewMove;
