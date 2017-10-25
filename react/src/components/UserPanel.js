@@ -11,23 +11,32 @@ const UserPanel = props => {
       <p>
         <strong>{props.current_user.name}</strong>
       </p>
-      <p className="text-left">
-        contact info:
-      </p>
+      <div className="row">
+        <div className="column align-left">
+          contact&nbsp;info:
+        </div>
+        <div className="edit-button text-right column">
+          <Link to="/app/user/edit">
+            <div className="button large">
+              <i className="fa fa-pencil" aria-hidden="true"></i>
+            </div>
+          </Link>
+        </div>
+      </div>
       <p>
         {props.current_user.email}
       </p>
       <p>
         {props.current_user.phone_neat}
       </p>
-      <div className="edit-button text-right">
-        <Link to="/user/edit">
-          <div className="button large">
-            <i className="fa fa-pencil" aria-hidden="true"></i>
-          </div>
-        </Link>
-      </div>
       <div className="card-section">
+        <div className="add-move-button text-right column">
+          <Link to="/app/move/new">
+            <div className="button large">
+              create a new move
+            </div>
+          </Link>
+        </div>
         <MoveList moves={props.current_user.moves} />
       </div>
     </div>

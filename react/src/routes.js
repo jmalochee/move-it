@@ -13,7 +13,7 @@ let routes = (
     <Route path="/app" component={App}>
       <Route path="/app/moves/new" component={NewMove}/>
       <Route path="/app/moves/:id" component={MoveShow}/>
-      <Route path="/app/update_user" component={EditUser}/>
+      <Route path="/app/user/edit" component={EditUser}/>
     </Route>
   </Route>
 );
