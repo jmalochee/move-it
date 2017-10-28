@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Inventory from '../components/Inventory';
 import MoveDetails from '../components/MoveDetails';
 import MovePrompt from '../components/MovePrompt';
+import EditButton from '../components/EditButton';
 
 class MoveShow extends Component {
   constructor(props) {
@@ -88,6 +89,7 @@ class MoveShow extends Component {
 
           </div>
         </div>
+        <EditButton linkTo={`/app/moves/${this.props.params.id}/edit`} />
       </div>
     )
   }

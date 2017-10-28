@@ -25,7 +25,7 @@ class Move < ApplicationRecord
 
   belongs_to :user
 
-  def orig_addr
+  def dest_addr
     {
       street: dest_address,
       unit: dest_unit,
@@ -35,7 +35,7 @@ class Move < ApplicationRecord
     }
   end
 
-  def dest_addr
+  def orig_addr
     {
       street: orig_address,
       unit: orig_unit,

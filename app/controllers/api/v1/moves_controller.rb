@@ -6,7 +6,7 @@ class Api::V1::MovesController < ApplicationController
     parsed = JSON.parse(body)
     move = Move.new(parsed)
     if move.save
-      render json: { message: ["move created successfully!"], move_id: move.id }
+      render json: { message: ["move created successfully!"], move_id: move.id, status: 200 }
     else
       render json: { errors: report(move.errors) }
     end
@@ -17,12 +17,14 @@ class Api::V1::MovesController < ApplicationController
     parsed = JSON.parse(body)
     if current_user.moves.find(params[:id])
       move = Move.find(params[:id])
-      move.update_attributes(parsed)
-      render json: { move: move, status: 200 }
+      if move.update_attributes(parsed)
+        render json: { message: ["move updated successfully!"], move_id: move.id, status: 200 }
+      else
+        render json: { status: 422 }
+      end
     else
-      render json: { status: 403 }
-    end
-
+      render json: { status: 404 }
+    end    
   end
 
   def edit
@@ -42,7 +44,7 @@ class Api::V1::MovesController < ApplicationController
       move = Move.find(params[:id])
     end
 
-    render json: { move: move, options: options }
+    render json: { move: move, options: options, status: 200 }
 
   end
 
@@ -68,7 +70,7 @@ class Api::V1::MovesController < ApplicationController
 
     move = Move.new
 
-    render json: { move: move, options: options }
+    render json: { move: move, options: options, status: 200 }
   end
 
 end
