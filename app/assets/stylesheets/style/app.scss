@@ -97,7 +97,7 @@ input .button {
   padding-right: 25px;
 }
 
-.newmovebutton {
+.moveformbutton {
   margin: 50px;
 }
 
@@ -130,15 +130,15 @@ label {
   display: none;
 }
 
-#newmovesubmit {
+#moveformsubmit {
   display: none;
 }
 
-#newmovenext {
+#moveformnext {
   display: inline;
 }
 
-#newmoveback {
+#moveformback {
   display: none;
 }
 
@@ -150,7 +150,7 @@ label {
   height: 3px;
 }
 
-#newmove-progress {
+#moveform-progress {
   width: 20%;
   height: 3px;
   background-color: $accent-color;
