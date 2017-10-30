@@ -1,5 +1,4 @@
 class Api::V1::MovesController < ApplicationController
-  protect_from_forgery unless: -> { request.format.json? }
 
   def create
     body = request.body.read

@@ -131,7 +131,13 @@ class NewUser extends Component {
         password: this.state.password,
         password_confirmation: this.state.password_confirmation
       }
-      fetch('/api/v1/users', { method: 'POST', body: JSON.stringify(requestBody) })
+      let token = $('meta[name="csrf-token"]').attr('content');
+      fetch('/api/v1/users', {
+        method: 'POST',
+        credentials: "same-origin",
+        headers: { "X-CSRF-Token": token },
+        body: JSON.stringify(requestBody)
+      })
       .then(response => {
         let parsed = response.json()
         return parsed

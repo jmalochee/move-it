@@ -125,9 +125,11 @@ class EditUser extends Component {
         this.validateEmail(this.state.email) &&
         this.validateUrl(this.state.avatar)
       ) {
+        let token = $('meta[name="csrf-token"]').attr('content');
         fetch(`/api/v1/users/${this.state.current_user.id}.json`, {
           method: 'PATCH',
-          credentials: "include",
+          credentials: "same-origin",
+          headers: { "X-CSRF-Token": token },
           body: JSON.stringify(this.loadRequestBody())
         }).then(response => {
           let parsed = response.json()
@@ -135,7 +137,7 @@ class EditUser extends Component {
         }).then(parsed => {
           if ( parsed.message ) {
             this.setState({ message: parsed.message });
-            window.location=`/users/${this.state.current_user.id}`
+            window.location=`/app`
           } else if ( parsed.errors ) {
             this.setState({ errors: parsed.errors })
           }
