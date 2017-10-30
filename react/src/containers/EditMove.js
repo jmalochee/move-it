@@ -12,9 +12,9 @@ class NewMove extends Component {
     return(
       <div className='newmove'>
         <MoveForm
-          submitFetchMethod='POST'
-          submitMoveAddress='/api/v1/moves.json'
-          getMoveAddress='/api/v1/moves/new.json'
+          submitFetchMethod='PATCH'
+          submitMoveAddress={`/api/v1/moves/${this.props.params.id}.json`}
+          getMoveAddress={`/api/v1/moves/${this.props.params.id}/edit.json`}
         />
       </div>
     )

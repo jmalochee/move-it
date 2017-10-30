@@ -7,7 +7,7 @@ const NumberField = props => {
         name={props.name}
         onChange={props.handlerFunction}
         type='number'
-        value={props.content}
+        value={props.content || ""}
         placeholder={props.placeholder}
       />
     </label>

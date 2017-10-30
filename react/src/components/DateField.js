@@ -7,7 +7,7 @@ const DateField = props => {
         name={props.name}
         onChange={props.handlerFunction}
         type='date'
-        value={props.content}
+        value={props.content || ""}
         placeholder={props.placeholder}
         size={props.size}
       />

@@ -1,6 +1,7 @@
 import React, { component} from 'react';
 import { Link } from 'react-router';
 import MoveList from './MoveList';
+import EditButton from './EditButton';
 
 const UserPanel = props => {
   return(
@@ -15,13 +16,7 @@ const UserPanel = props => {
         <div className="column align-left">
           contact&nbsp;info:
         </div>
-        <div className="edit-button text-right column">
-          <Link to="/app/user/edit">
-            <div className="button large">
-              <i className="fa fa-pencil" aria-hidden="true"></i>
-            </div>
-          </Link>
-        </div>
+        <EditButton linkTo="/app/user/edit"/>
       </div>
       <p>
         {props.current_user.email}
