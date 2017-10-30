@@ -49,9 +49,15 @@ class MoveShow extends Component {
     this.getUser = this.getUser.bind(this);
   }
 
+  componentWillReceiveProps(nextProps){
+    if ( this.props.params.id !== nextProps.params.id ) {
+      this.getMove(nextProps.params.id);
+    }
+  }
+
   componentDidMount(){
     this.getUser();
-    this.getMove();
+    this.getMove(this.props.params.id);
   }
 
   getUser() {
@@ -65,8 +71,8 @@ class MoveShow extends Component {
     })
   }
 
-  getMove() {
-    fetch(`/api/v1/moves/${this.props.params.id}.json`, {
+  getMove(id) {
+    fetch(`/api/v1/moves/${id}.json`, {
       credentials: "include",
       method: 'GET'
     })
