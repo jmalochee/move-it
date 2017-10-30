@@ -74,9 +74,11 @@ class MoveForm extends Component {
   handleFormSubmit(event) {
     event.preventDefault();
     this.state.move.user_id = this.state.current_user.id
+    let token = $('meta[name="csrf-token"]').attr('content');
     fetch(this.props.submitMoveAddress, {
       credentials: "same-origin",
       method: this.props.submitFetchMethod,
+      headers: { "X-CSRF-Token": token },
       body: JSON.stringify(this.state.move)
     })
     .then(response => {

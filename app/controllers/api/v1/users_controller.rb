@@ -1,5 +1,4 @@
 class Api::V1::UsersController < ApplicationController
-  protect_from_forgery unless: -> { request.format.json? }
   helper_method :current_user, :user_signed_in
 
   def update
