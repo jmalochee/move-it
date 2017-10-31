@@ -26,7 +26,7 @@ const UserPanel = props => {
       </p>
       <div className="card-section">
         <div className="add-move-button text-right column">
-          <Link to="/app/move/new">
+          <Link to="/app/moves/new">
             <div className="button large">
               create a new move
             </div>
