@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import EditUser from './EditUser';
-import UserPanel from '../components/UserPanel';
+import SidePanel from '../components/SidePanel';
 
 class App extends Component {
   constructor(props) {
@@ -27,9 +27,7 @@ class App extends Component {
   render() {
     return(
       <div className="app row">
-        <div className="small-12 medium-4 large-3 columns">
-          <UserPanel current_user={this.state.current_user} />
-        </div>
+        <SidePanel current_user={this.state.current_user} />
         <div className="small-12 medium-8 large-9 columns">
           {this.props.children}
         </div>

@@ -76,11 +76,8 @@ input .button {
   font-size: .8em;
 }
 
-.registration button {
+.pitch button {
   margin: 50px;
-}
-
-.registration {
   padding: 50px;
   font-size: 1.2em;
 }
@@ -89,8 +86,12 @@ input .button {
   padding: 50px;
 }
 
-.app {
-  padding-top: 25px;
+.link a {
+  color: $text-color;
+}
+
+.link:hover {
+  background-color: darken( $background-color, 10% );
 }
 
 .inventory {
@@ -147,12 +148,12 @@ label {
 }
 
 .progress {
-  height: 3px;
+  height: 10px;
 }
 
 #moveform-progress {
   width: 20%;
-  height: 3px;
+  height: 10px;
   background-color: $accent-color;
 }
 
@@ -176,9 +177,12 @@ label {
   padding: 15px;
 }
 
+.round {
+  border-radius: 999px;
+}
+
 .edit-button .button{
   margin: 0 0 0 0;
-  border-radius: 50%;
 }
 
 .avatar-select .card {
@@ -186,4 +190,14 @@ label {
   background-color: white;
   box-shadow: 0 0 0;
   padding: 0px;
+}
+
+.user-panel {
+  margin-bottom: 5em;
+}
+
+.side-panel {
+  background-color: $background-color;
+  padding: 1em;
+  margin-top: 0;
 }

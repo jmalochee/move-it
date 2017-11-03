@@ -31,6 +31,11 @@ class MoveForm extends Component {
     this.toggleButtons = this.toggleButtons.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.toMoveShow = this.toMoveShow.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
+  }
+
+  handleCancel() {
+    this.context.router.goBack();
   }
 
   handleFieldChange(event) {
@@ -99,15 +104,18 @@ class MoveForm extends Component {
     if (document.getElementById("origin-addr").style.display === "block") {
       document.getElementById("moveformback").style.display = "none";
       document.getElementById("moveformnext").style.display = "inline";
+      document.getElementById("moveformcancel").style.display = "inline";
       document.getElementById("moveformsubmit").style.display = "none";
     } else if (document.getElementById("last-step").style.display === "block") {
       document.getElementById("moveformback").style.display = "inline";
       document.getElementById("moveformnext").style.display = "none";
       document.getElementById("moveformsubmit").style.display = "inline";
+      document.getElementById("moveformcancel").style.display = "none";
     } else {
       document.getElementById("moveformback").style.display = "inline";
       document.getElementById("moveformnext").style.display = "inline";
       document.getElementById("moveformsubmit").style.display = "none";
+      document.getElementById("moveformcancel").style.display = "none";      
     }
   }
 
@@ -155,8 +163,8 @@ class MoveForm extends Component {
       <div className='row align-center'>
         <form id='moveform' className='callout small-12 medium-8 large-10 columns' onSubmit={this.handleFormSubmit}>
           <h3> lets get started! </h3>
-          <div className="progress" role="progressbar">
-            <div id='moveform-progress' className='progress-meter'></div>
+          <div className="progress round" role="progressbar">
+            <div id='moveform-progress' className='progress-meter round'></div>
           </div>
           {errorDiv}
           <div id="origin-addr">
@@ -343,6 +351,7 @@ class MoveForm extends Component {
           <div className='moveform-buttons row'>
             <div className='column align-left'>
               <input type='button' className='button' value='back' id='moveformback' onClick={this.navBackHandler}/>
+              <input type='button' className='button cancel' value='cancel' id='moveformcancel' onClick={this.handleCancel}/>
             </div>
             <div className='column text-right'>
               <input type='button' className='button' value='next' id='moveformnext' onClick={this.navNextHandler}/>
