@@ -9,6 +9,7 @@ const TextAreaField = props => {
         placeholder={props.placeholder}
         rows={props.rows}
         form={props.form}
+        key={props.key}
       >
         {props.content}
       </textarea>

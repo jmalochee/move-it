@@ -71,6 +71,7 @@ class MoveForm extends Component {
     })
     .then(response => response.json())
     .then(responseData => {
+      debugger;
       this.setState({ move: responseData.move });
       this.setState({ options: responseData.options });
     })
@@ -150,6 +151,7 @@ class MoveForm extends Component {
   }
 
   render() {
+    debugger;
     let errorDiv;
     let errorItems;
     if (Object.keys(this.state.errors).length > 0) {
@@ -346,6 +348,7 @@ class MoveForm extends Component {
               placeholder='this is a great place to let movers know about tight corners accessing driveways, narrow staircases, whether you needed a hoist to get large items into the house, or other miscelaneous details or instructions'
               rows='8'
               form='moveform'
+              key={this.state.move.id}
             />
           </div>
           <div className='moveform-buttons row'>
