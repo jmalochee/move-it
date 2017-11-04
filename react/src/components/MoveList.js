@@ -4,10 +4,13 @@ import { Link } from 'react-router';
 const MoveList = props => {
   let moveItems = props.moves.map(move => {
     return(
-      <div className="link" key={move.id}>
+      <div className="link-container" key={move.id}>
         <Link to={`/app/moves/${move.id}`}>
-          <p>{move.move_date}<br/>
-          {`${move.orig_city}, ${move.orig_state} to ${move.dest_city}, ${move.dest_state}`}</p>
+          <div className="link">
+            {`${move.orig_city}, ${move.orig_state} to ${move.dest_city}, ${move.dest_state}`}
+            <br/>
+            {move.move_date}
+          </div>
         </Link>
       </div>
     )

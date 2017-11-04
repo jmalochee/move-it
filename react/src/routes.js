@@ -1,17 +1,16 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import Layout from './containers/Layout';
-import Pitch from './components/Pitch';
+import Home from './components/Home';
 import App from './containers/App';
-import MoveForm from './containers/MoveForm';
 import MoveShow from './containers/MoveShow';
 import EditUser from './containers/EditUser';
-import NewMove from './containers/NewMove'
-import EditMove from './containers/EditMove'
+import NewMove from './containers/NewMove';
+import EditMove from './containers/EditMove';
 
 let routes = (
   <Route path="/" component={Layout}>
-    <Route path="/register" component={Pitch}/>
+    <IndexRoute component={Home}/>
     <Route path="/app" component={App}>
       <Route path="/app/moves/new" component={NewMove}/>
       <Route path="/app/moves/:id" component={MoveShow}/>

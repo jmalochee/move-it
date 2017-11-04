@@ -5,7 +5,7 @@ import UserPanel from './UserPanel';
 
 const SidePanel = props => {
   return(
-    <div className="side-panel small-12 medium-4 large-3 columns">
+    <div className="side-panel small-12 medium-3 large-3 columns">
       <UserPanel current_user={props.current_user}/>
       <MoveList moves={props.current_user.moves} />
     </div>
