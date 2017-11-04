@@ -9,6 +9,7 @@ const UserPanel = props => {
       <div className="card-section user-image">
         <img src={props.current_user.avatar}/>
       </div>
+      <EditButton linkTo="/app/user/edit"/>
       <div className="user-info">
         <p>
           <strong>{props.current_user.name}</strong>
@@ -17,7 +18,6 @@ const UserPanel = props => {
           {props.current_user.email} <br/>
           {props.current_user.phone_neat}
         </p>
-        <EditButton linkTo="/app/user/edit"/>
       </div>
     </div>
   )

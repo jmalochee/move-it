@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import EditUser from './EditUser';
 import SidePanel from '../components/SidePanel';
+import PropTypes from 'prop-types';
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +21,11 @@ class App extends Component {
     })
     .then(response => response.json())
     .then(responseData => {
-      this.setState({ current_user: responseData })
+      if (!!responseData) {
+        this.setState({ current_user: responseData })
+      } else {
+        this.context.router.replace(`/`);
+      }
     })
   }
 
@@ -35,4 +40,9 @@ class App extends Component {
     )
   }
 }
+
+App.contextTypes = {
+  router: PropTypes.object
+};
+
 export default App;
