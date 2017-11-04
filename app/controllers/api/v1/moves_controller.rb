@@ -12,7 +12,6 @@ class Api::V1::MovesController < ApplicationController
   end
 
   def update
-    binding.pry
     body = request.body.read
     parsed = JSON.parse(body)
     if current_user.moves.find(params[:id])

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MoveForm from './MoveForm'
 
-class NewMove extends Component {
+class EditMove extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,4 +21,4 @@ class NewMove extends Component {
   }
 }
 
-export default NewMove;
+export default EditMove;

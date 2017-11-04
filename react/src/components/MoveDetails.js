@@ -47,6 +47,11 @@ const MoveDetails = props => {
         </div>
         {side(props.move.destination)}
       </div>
+      <div className="general">
+        <p>scheduled for {props.move.move_date}</p>
+        <p>additional information:</p>
+        <blockquote> {props.move.comments || "no additional information provided"} </blockquote>
+      </div>
     </div>
   )
 }
