@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Experience from './Experience';
 import PropTypes from 'prop-types';
 
-
 class Home extends Component {
   constructor(props) {
     super(props)

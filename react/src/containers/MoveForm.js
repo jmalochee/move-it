@@ -115,7 +115,7 @@ class MoveForm extends Component {
       document.getElementById("moveformback").style.display = "inline";
       document.getElementById("moveformnext").style.display = "inline";
       document.getElementById("moveformsubmit").style.display = "none";
-      document.getElementById("moveformcancel").style.display = "none";      
+      document.getElementById("moveformcancel").style.display = "none";
     }
   }
 
@@ -208,7 +208,7 @@ class MoveForm extends Component {
           <div id="origin-info">
             <NumberField
               content={this.state.move.orig_rooms}
-              label='how many rooms are there at this address?'
+              label='how many rooms are being moved out from this address?'
               name='orig_rooms'
               handlerFunction={this.handleFieldChange}
               placeholder='#'
@@ -231,7 +231,7 @@ class MoveForm extends Component {
               be sure to acquire any necessary parking permits or reservations in advance!
             </p>
             <SelectField
-              label='how do you get from the truck to your floor?'
+              label='how will movers get from the truck to your floor?'
               name='orig_access'
               handlerFunction={this.handleFieldChange}
               options={this.state.options.access}
@@ -289,7 +289,7 @@ class MoveForm extends Component {
           <div id="destination-info">
             <NumberField
               content={this.state.move.dest_rooms}
-              label='how many rooms are there at this address?'
+              label='how many rooms are you moving into at this address?'
               name='dest_rooms'
               handlerFunction={this.handleFieldChange}
               placeholder='#'
@@ -312,7 +312,7 @@ class MoveForm extends Component {
               be sure to acquire any necessary parking permits or reservations in advance!
             </p>
             <SelectField
-              label='how do you get from the truck to your floor?'
+              label='how will movers get from the truck to your floor?'
               name='dest_access'
               handlerFunction={this.handleFieldChange}
               options={this.state.options.access}

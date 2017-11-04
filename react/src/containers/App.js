@@ -22,7 +22,7 @@ class App extends Component {
     .then(response => response.json())
     .then(responseData => {
       if (!!responseData) {
-        this.setState({ current_user: responseData })
+        this.setState({ current_user: responseData });
       } else {
         this.context.router.replace(`/`);
       }
