@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Inventory from '../components/Inventory';
 import MoveDetails from '../components/MoveDetails';
 import MovePrompt from '../components/MovePrompt';
-import EditButton from '../components/EditButton';
 
 class MoveShow extends Component {
   constructor(props) {
@@ -84,18 +83,15 @@ class MoveShow extends Component {
 
   render() {
     return(
-      <div className="moveShow small-12 medium-10 large-10 columns">
-        <div className="row">
-          <MoveDetails
-            move={this.state.current_move}
-            />
-        </div>
-        <div className="small-10 medium-2 large-2 columns">
+      <div className="moveShow row">
+        <MoveDetails
+          move={this.state.current_move}
+        />
+        <div className="small-12 medium-3 large-3 columns">
           <div className="inventory">
 
           </div>
         </div>
-        <EditButton linkTo={`/app/moves/${this.props.params.id}/edit`} />
       </div>
     )
   }

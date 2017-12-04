@@ -1,5 +1,5 @@
 class MoveSerializer < ActiveModel::Serializer
-  attributes :move_date, :comments, :origin, :destination, :user_id, :created_at, :updated_at
+  attributes :id, :move_date, :comments, :origin, :destination, :user_id, :created_at, :updated_at
 
   def origin
     {
