@@ -33,7 +33,7 @@ class App extends Component {
     return(
       <div className="app row">
         <SidePanel current_user={this.state.current_user} />
-        <div className="small-12 medium-8 large-9 columns">
+        <div className="main small-12 medium-8 large-9 columns">
           {this.props.children}
         </div>
       </div>

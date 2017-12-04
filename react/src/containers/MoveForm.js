@@ -71,7 +71,6 @@ class MoveForm extends Component {
     })
     .then(response => response.json())
     .then(responseData => {
-      debugger;
       this.setState({ move: responseData.move });
       this.setState({ options: responseData.options });
     })
@@ -151,7 +150,6 @@ class MoveForm extends Component {
   }
 
   render() {
-    debugger;
     let errorDiv;
     let errorItems;
     if (Object.keys(this.state.errors).length > 0) {
@@ -163,7 +161,7 @@ class MoveForm extends Component {
 
     return(
       <div className='row align-center'>
-        <form id='moveform' className='callout small-12 medium-8 large-10 columns' onSubmit={this.handleFormSubmit}>
+        <form id='moveform' className='callout small-12 medium-8 large-6 columns' onSubmit={this.handleFormSubmit}>
           <h3> lets get started! </h3>
           <div className="progress round" role="progressbar">
             <div id='moveform-progress' className='progress-meter round'></div>

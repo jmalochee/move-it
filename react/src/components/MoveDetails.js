@@ -1,4 +1,5 @@
 import React from 'react';
+import EditButton from '../components/EditButton';
 
 const MoveDetails = props => {
   let row = (name, value) => {
@@ -13,11 +14,11 @@ const MoveDetails = props => {
 
   let side = (i) => {
     return(
-      <div className="row">
-        <div className="small-12 medium-6 large-6 columns address">
+      <div className="move-end row">
+        <div className="small-12 medium-12 large-4 columns align-self-middle address">
           {address(i.address)}
         </div>
-        <div className="small-12 medium-6 large-6 columns address-details">
+        <div className="small-12 medium-12 large-8 columns address-details">
           <table>
             <tbody>
               {row("floor", i.floor)}
@@ -33,24 +34,21 @@ const MoveDetails = props => {
   }
 
   return(
-    <div className="column move-details">
-      This move will take us...
-      <div id="origin">
-        <div className="row">
-          ...from here
-        </div>
-        {side(props.move.origin)}
+    <div className="small-12 medium-10 large-10 columns move-details">
+      <h3>this move will take us</h3>
+      <div className="row">
+        ...from here
       </div>
-      <div id="destination">
-        <div className="row">
-          ...to here
-        </div>
-        {side(props.move.destination)}
+      {side(props.move.origin)}
+      <div className="row">
+        ...to here
       </div>
-      <div className="general">
+      {side(props.move.destination)}
+      <div className="general row column">
         <p>scheduled for {props.move.move_date}</p>
         <p>additional information:</p>
         <blockquote> {props.move.comments || "no additional information provided"} </blockquote>
+        <EditButton linkTo={`/app/moves/${props.move.id}/edit`} />
       </div>
     </div>
   )

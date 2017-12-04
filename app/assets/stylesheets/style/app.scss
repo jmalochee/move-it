@@ -209,3 +209,24 @@ label {
   margin-top: 0;
   padding: 0;
 }
+
+table, td {
+  width: 25em;
+}
+
+.main {
+  padding: 3em;
+}
+
+.move-details {
+  background-color: white;
+  padding: 2em;
+}
+
+.move-end {
+  padding: 1em;
+  margin: 1em;
+  border-style: solid;
+  border-color: $text-color;
+  border-width: 1px;
+}
